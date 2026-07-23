@@ -101,7 +101,7 @@
             [35.757857, -78.612825],
             [35.753120, -78.623897],
             [35.754583, -78.638917],
-            [35.754490, -78.642084], // Updated exact meeting point with Spire's southern edge
+            [35.754490, -78.642084],
             [35.769476, -78.648465],
             [35.770238, -78.648190],
             [35.774372, -78.655836],
@@ -133,15 +133,15 @@
             })
         }).addTo(map);
 
-        // 2. Green District Boundary Coordinates (Corrected meeting point at 35.754490, -78.642084)
+        // 2. Green District Boundary Coordinates
         const greenCoords = [
             [35.757379, -78.665168],
             [35.756508, -78.659847],
             [35.754784, -78.655040],
             [35.753339, -78.651349],
             [35.752938, -78.649096],
-            [35.754490, -78.642084], // Corrected junction point meeting the Spire border precisely
-            [35.770238, -78.648190], // Connects up to Western Blvd junction with Spire
+            [35.754490, -78.642084],
+            [35.770238, -78.648190],
             [35.774372, -78.655836],
             [35.777774, -78.650595],
             [35.780953, -78.650566],
@@ -181,8 +181,11 @@
 
         greenPolygon.bindPopup(`<strong>SECTOR: GREEN DISTRICT</strong>`);
 
+        // Shifted down (-0.008 in latitude) and slightly left so it sits cleanly in the lower-middle portion of the Green District
         const greenCenter = greenPolygon.getBounds().getCenter();
-        L.marker(greenCenter, {
+        const adjustedGreenCenter = [greenCenter.lat - 0.008, greenCenter.lng - 0.012];
+
+        L.marker(adjustedGreenCenter, {
             icon: L.divIcon({
                 className: 'scifi-label-green',
                 html: 'GREEN DISTRICT',
