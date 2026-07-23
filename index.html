@@ -33,9 +33,8 @@
             border: 1px solid #00f0ff;
             color: #00f0ff;
             font-family: 'Orbitron', sans-serif;
-            font-size: 13px;
             font-weight: 700;
-            padding: 6px 12px;
+            padding: 4px 10px;
             letter-spacing: 2px;
             box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
             text-transform: uppercase;
@@ -44,6 +43,7 @@
             align-items: center;
             justify-content: center;
             white-space: nowrap;
+            transition: font-size 0.2s ease, padding 0.2s ease;
         }
         /* Sci-Fi Label for Green District (Neon Green) */
         .scifi-label-green {
@@ -51,9 +51,8 @@
             border: 1px solid #28a745;
             color: #28a745;
             font-family: 'Orbitron', sans-serif;
-            font-size: 13px;
             font-weight: 700;
-            padding: 6px 12px;
+            padding: 4px 10px;
             letter-spacing: 2px;
             box-shadow: 0 0 15px rgba(40, 167, 69, 0.4);
             text-transform: uppercase;
@@ -62,6 +61,7 @@
             align-items: center;
             justify-content: center;
             white-space: nowrap;
+            transition: font-size 0.2s ease, padding 0.2s ease;
         }
         .leaflet-popup-content-wrapper, .leaflet-popup-tip {
             background: #0b0f19;
@@ -91,10 +91,6 @@
             subdomains: 'abcd',
             attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
         }).addTo(map);
-
-        // Shared exact shared border points between the two districts:
-        // Start: [35.770438, -78.648150]
-        // End:   [35.754625, -78.642027]
 
         // 1. Spire District Boundary Coordinates
         const spireCoords = [
@@ -127,12 +123,10 @@
         spirePolygon.bindPopup(`<strong>SECTOR: SPIRE DISTRICT</strong>`);
 
         const spireCenter = spirePolygon.getBounds().getCenter();
-        L.marker(spireCenter, {
+        const spireMarker = L.marker(spireCenter, {
             icon: L.divIcon({
                 className: 'scifi-label-spire',
-                html: 'SPIRE DISTRICT',
-                iconSize: [160, 36],
-                iconAnchor: [80, 18]
+                html: 'SPIRE DISTRICT'
             })
         }).addTo(map);
 
@@ -187,14 +181,31 @@
         const greenCenter = greenPolygon.getBounds().getCenter();
         const adjustedGreenCenter = [greenCenter.lat - 0.008, greenCenter.lng + 0.0];
 
-        L.marker(adjustedGreenCenter, {
+        const greenMarker = L.marker(adjustedGreenCenter, {
             icon: L.divIcon({
                 className: 'scifi-label-green',
-                html: 'GREEN DISTRICT',
-                iconSize: [160, 36],
-                iconAnchor: [80, 18]
+                html: 'GREEN DISTRICT'
             })
         }).addTo(map);
+
+        // Dynamic zoom-scaling function to scale font size relative to map zoom level
+        function updateLabelSizes() {
+            const zoom = map.getZoom();
+            // Base scale factor centered around zoom level 13
+            let fontSize = 10 + (zoom - 11) * 1.8;
+            if (fontSize < 8) fontSize = 8;   // Minimum size limit
+            if (fontSize > 20) fontSize = 20; // Maximum size limit
+
+            const elements = document.querySelectorAll('.scifi-label-spire, .scifi-label-green');
+            elements.forEach(el => {
+                el.style.fontSize = fontSize + 'px';
+                el.style.padding = (fontSize * 0.4) + 'px ' + (fontSize * 0.9) + 'px';
+            });
+        }
+
+        // Run on zoom change and initial load
+        map.on('zoomend', updateLabelSizes);
+        updateLabelSizes();
     </script>
 </body>
 </html>
