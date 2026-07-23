@@ -1,13 +1,189 @@
-// --- INTERACTIVE STORYTELLING POI (Cloud Plaza) ---
-        const cloudPlazaMarker = L.marker([35.778, -78.630], {
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Raleigh - Spire & Green Districts</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+    <!-- Google Fonts for Sci-Fi Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
+    <style>
+        #map {
+            height: 100vh;
+            width: 100%;
+            background-color: #0b0f19;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        /* Dark Matter tiles with high-contrast white roads */
+        .leaflet-tile-pane {
+            filter: brightness(180%) contrast(150%);
+        }
+        /* Sci-Fi Label for Spire District (Cyan) */
+        .scifi-label-spire {
+            background: rgba(0, 240, 255, 0.15);
+            border: 1px solid #00f0ff;
+            color: #00f0ff;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            letter-spacing: 2px;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+            text-transform: uppercase;
+            text-align: center;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transform: translate(-50%, -50%);
+        }
+        /* Sci-Fi Label for Green District (Neon Green) */
+        .scifi-label-green {
+            background: rgba(40, 167, 69, 0.15);
+            border: 1px solid #28a745;
+            color: #28a745;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            letter-spacing: 2px;
+            box-shadow: 0 0 15px rgba(40, 167, 69, 0.4);
+            text-transform: uppercase;
+            text-align: center;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transform: translate(-50%, -50%);
+        }
+        /* Custom Interactive POI Marker Styling */
+        .poi-pulse-marker {
+            background: #ff00ff;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+            cursor: pointer;
+        }
+        /* Popup Theme Customization */
+        .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+            background: #0b0f19;
+            color: #00f0ff;
+            border: 1px solid #00f0ff;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .story-popup {
+            max-width: 280px;
+            font-size: 11px;
+            line-height: 1.4;
+            color: #c0d0e0;
+        }
+        .story-popup h3 {
+            color: #ff00ff;
+            margin: 0 0 8px 0;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .story-popup img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border: 1px solid #ff00ff;
+            margin-bottom: 8px;
+            background-color: #1a1e2a;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="map"></div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script>
+        // Initialize map centered over downtown Raleigh
+        const map = L.map('map', {
+            zoomControl: false
+        }).setView([35.775, -78.650], 13);
+
+        // Add CartoDB Dark Matter No-Labels basemap
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+            maxZoom: 20,
+            subdomains: 'abcd',
+            attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+        }).addTo(map);
+
+        // 1. Spire District Boundary Coordinates
+        const spireCoords = [
+            [35.804623, -78.623870], [35.792988, -78.624918], [35.792937, -78.612899],
+            [35.769760, -78.614413], [35.757857, -78.612825], [35.753120, -78.623897],
+            [35.754583, -78.638917], [35.754625, -78.642027], [35.770438, -78.648150],
+            [35.774372, -78.655836], [35.777774, -78.650595], [35.778192, -78.650526],
+            [35.788695, -78.651009], [35.788580, -78.643067], [35.804518, -78.623968]
+        ];
+
+        // Render Spire District (Cyan theme)
+        const spirePolygon = L.polygon(spireCoords, {
+            color: "#00f0ff", weight: 3, dashArray: '6, 6',
+            fillColor: "#00f0ff", fillOpacity: 0.12
+        }).addTo(map);
+
+        spirePolygon.bindPopup(`<strong>SECTOR: SPIRE DISTRICT</strong>`);
+
+        const spireCenter = spirePolygon.getBounds().getCenter();
+        const spireMarker = L.marker(spireCenter, {
             icon: L.divIcon({
-                className: 'poi-pulse-marker',
-                iconSize: [12, 12],
-                iconAnchor: [6, 6]
+                className: 'scifi-label-spire', html: 'SPIRE DISTRICT', iconSize: [0, 0]
             })
         }).addTo(map);
 
-        // --- FIXED GOOGLE DRIVE DIRECT LINK ---
+        // 2. Green District Boundary Coordinates
+        const greenCoords = [
+            [35.757379, -78.665168], [35.756508, -78.659847], [35.754784, -78.655040],
+            [35.753339, -78.651349], [35.752938, -78.649096], [35.754625, -78.642027],
+            [35.770438, -78.648150], [35.774372, -78.655836], [35.777774, -78.650595],
+            [35.780953, -78.650566], [35.781101, -78.652045], [35.782196, -78.654488],
+            [35.782701, -78.655254], [35.783673, -78.656665], [35.784381, -78.658311],
+            [35.785345, -78.660508], [35.786128, -78.662385], [35.787863, -78.668862],
+            [35.788682, -78.672191], [35.790478, -78.679075], [35.793469, -78.684431],
+            [35.788423, -78.686798], [35.775556, -78.680922], [35.773335, -78.683289],
+            [35.769294, -78.691066], [35.769123, -78.691268], [35.759764, -78.690935],
+            [35.754413, -78.694246], [35.753638, -78.694550], [35.752037, -78.694747],
+            [35.754893, -78.679786], [35.756769, -78.670554], [35.757326, -78.665232]
+        ];
+
+        // Render Green District (Neon Green theme)
+        const greenPolygon = L.polygon(greenCoords, {
+            color: "#28a745", weight: 3, dashArray: '6, 6',
+            fillColor: "#28a745", fillOpacity: 0.12
+        }).addTo(map);
+
+        greenPolygon.bindPopup(`<strong>SECTOR: GREEN DISTRICT</strong>`);
+
+        const greenCenter = greenPolygon.getBounds().getCenter();
+        const adjustedGreenCenter = [greenCenter.lat - 0.008, greenCenter.lng + 0.0];
+
+        const greenMarker = L.marker(adjustedGreenCenter, {
+            icon: L.divIcon({
+                className: 'scifi-label-green', html: 'GREEN DISTRICT', iconSize: [0, 0]
+            })
+        }).addTo(map);
+
+        // --- INTERACTIVE STORYTELLING POI (Cloud Plaza) ---
+        const cloudPlazaMarker = L.marker([35.778, -78.630], {
+            icon: L.divIcon({
+                className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6]
+            })
+        }).addTo(map);
+
+        // Your fixed Google Drive direct link
         const plazaImageUrl = "https://lh3.googleusercontent.com/d/1NuJHvWA7OAOvuuVykhITMF09OhzfJYXp";
 
         const plazaContent = `
@@ -19,3 +195,23 @@
             </div>
         `;
         cloudPlazaMarker.bindPopup(plazaContent);
+
+        // Dynamic zoom-scaling function for labels
+        function updateLabelSizes() {
+            const zoom = map.getZoom();
+            let fontSize = 9 + (zoom - 11) * 1.2;
+            if (fontSize < 8) fontSize = 8;   
+            if (fontSize > 15) fontSize = 15; 
+
+            const elements = document.querySelectorAll('.scifi-label-spire, .scifi-label-green');
+            elements.forEach(el => {
+                el.style.fontSize = fontSize + 'px';
+                el.style.padding = (fontSize * 0.4) + 'px ' + (fontSize * 0.9) + 'px';
+            });
+        }
+
+        map.on('zoomend', updateLabelSizes);
+        updateLabelSizes();
+    </script>
+</body>
+</html>
