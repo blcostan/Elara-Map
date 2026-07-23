@@ -19,9 +19,9 @@
             margin: 0;
             padding: 0;
         }
-        /* Custom filter to mimic a clean greyscale/monochrome Snazzy Maps look for free */
+        /* Greys out and tones down the background map tiles */
         .leaflet-tile-pane {
-            filter: grayscale(100%) contrast(110%) brightness(110%);
+            filter: grayscale(100%) contrast(120%) brightness(125%) invert(15%);
         }
     </style>
 </head>
@@ -34,99 +34,98 @@
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <script>
-        // 1. Initialize map centered over Raleigh
+        // Initialize map centered over Raleigh
         const map = L.map('map').setView([35.7796, -78.6382], 13);
 
-        // 2. Add free OpenStreetMap base tiles
+        // Add free OpenStreetMap base tiles
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
-            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
 
-        // 3. Define your custom zones with coordinates
+        // Realigned polygon coordinates matching your zones layout
         const zones = [
             {
                 name: "Industrial District",
-                color: "#6c757d",
+                color: "#6c757d", // Grey (North/Northwest area)
                 coords: [
-                    [35.815, -78.660],
-                    [35.820, -78.600],
-                    [35.785, -78.610],
-                    [35.785, -78.655]
+                    [35.825, -78.665],
+                    [35.830, -78.605],
+                    [35.790, -78.600],
+                    [35.785, -78.650]
                 ]
             },
             {
                 name: "Fringe City",
-                color: "#fd7e14",
+                color: "#fd7e14", // Orange (West/Northwest curve)
                 coords: [
-                    [35.790, -78.680],
-                    [35.795, -78.615],
-                    [35.750, -78.640],
-                    [35.720, -78.675]
+                    [35.795, -78.675],
+                    [35.800, -78.610],
+                    [35.750, -78.625],
+                    [35.720, -78.665]
                 ]
             },
             {
                 name: "Green Zone",
-                color: "#28a745",
+                color: "#28a745", // Green (Southwest pocket)
                 coords: [
-                    [35.765, -78.670],
-                    [35.770, -78.635],
-                    [35.735, -78.645],
-                    [35.740, -78.670]
+                    [35.765, -78.660],
+                    [35.775, -78.630],
+                    [35.735, -78.635],
+                    [35.725, -78.655]
                 ]
             },
             {
                 name: "Spire District",
-                color: "#ffc107",
+                color: "#ffc107", // Yellow (Central core)
                 coords: [
-                    [35.780, -78.640],
-                    [35.785, -78.605],
-                    [35.730, -78.615],
-                    [35.730, -78.645]
+                    [35.785, -78.635],
+                    [35.790, -78.600],
+                    [35.725, -78.605],
+                    [35.725, -78.635]
                 ]
             },
             {
                 name: "Downtown",
-                color: "#e2e8f0",
+                color: "#f8f9fa", // Light Beige/Off-white
                 coords: [
-                    [35.785, -78.605],
-                    [35.780, -78.570],
-                    [35.735, -78.575],
-                    [35.730, -78.615]
+                    [35.790, -78.600],
+                    [35.785, -78.570],
+                    [35.730, -78.575],
+                    [35.725, -78.605]
                 ]
             },
             {
                 name: "The Cinder",
-                color: "#556b2f",
+                color: "#556b2f", // Olive Green (East side)
                 coords: [
-                    [35.790, -78.590],
-                    [35.780, -78.540],
-                    [35.725, -78.545],
-                    [35.735, -78.575]
+                    [35.795, -78.585],
+                    [35.780, -78.535],
+                    [35.720, -78.540],
+                    [35.730, -78.575]
                 ]
             },
             {
                 name: "Sumptown",
-                color: "#000000",
+                color: "#000000", // Black (Bottom strip)
                 coords: [
-                    [35.735, -78.580],
-                    [35.735, -78.490],
-                    [35.715, -78.490],
-                    [35.715, -78.580]
+                    [35.735, -78.590],
+                    [35.735, -78.510],
+                    [35.715, -78.510],
+                    [35.715, -78.590]
                 ]
             }
         ];
 
-        // 4. Loop through and add polygon overlays to the map
+        // Render zones onto the map
         zones.forEach(zone => {
             const polygon = L.polygon(zone.coords, {
                 color: zone.color,
                 weight: 2,
                 fillColor: zone.color,
-                fillOpacity: 0.45
+                fillOpacity: 0.5
             }).addTo(map);
 
-            // Add click popups with zone names
             polygon.bindPopup(`<strong>${zone.name}</strong>`);
         });
     </script>
