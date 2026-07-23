@@ -61,7 +61,7 @@
         // Initialize map centered over downtown Raleigh
         const map = L.map('map', {
             zoomControl: false
-        }).setView([35.785, -78.635], 14);
+        }).setView([35.775, -78.635], 14);
 
         // Add CartoDB Positron No-Labels basemap (Clean text-free black & white base)
         L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
@@ -70,15 +70,16 @@
             attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
         }).addTo(map);
 
-        // Precise Spire District Boundary Coordinates provided
+        // Spire District Boundary Coordinates with corrected southern I-40/I-440 corridor integration
         const spireCoords = [
             [35.804623, -78.623870], // Start point near Capital Blvd / Brookside
             [35.792988, -78.624918], // South along Brookside Dr
             [35.792937, -78.612899], // East along Glascock St
             [35.769760, -78.614413], // South along Raleigh Blvd
-            [35.758000, -78.612905], // Continuing south on Raleigh Blvd to I-40 corridor
-            [35.758000, -78.648465], // West along I-40 to Lake Wheeler Rd (approximate western transition)
-            [35.769476, -78.648465], // NE on Lake Wheeler Rd to S Saunders St
+            [35.735000, -78.614413], // Continue south down Raleigh Blvd to meet the I-40 / I-440 beltline junction
+            [35.728000, -78.650000], // Follow the I-40 / I-440 southern loop westward
+            [35.732000, -78.675000], // Continuing along the southern beltline corridor past Caraleigh
+            [35.769476, -78.648465], // North via Lake Wheeler Rd to S Saunders St
             [35.770238, -78.648190], // North to Western Blvd
             [35.774372, -78.655836], // West to train tracks
             [35.777774, -78.650595], // NE along train tracks
@@ -98,7 +99,7 @@
         }).addTo(map);
 
         // Add interactive pop-up log
-        spirePolygon.bindPopup(`<strong>SECTOR: SPIRE DISTRICT</strong><br>[EXACT BOUNDARY FENCE INITIALIZED]`);
+        spirePolygon.bindPopup(`<strong>SECTOR: SPIRE DISTRICT</strong><br>[SOUTHERN BORDER: I-40 / I-440]`);
 
         // Permanently attach the glowing sci-fi text label to the center of the zone
         const labelCenter = spirePolygon.getBounds().getCenter();
