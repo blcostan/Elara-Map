@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Raleigh - Spire District</title>
+    <title>Raleigh - Spire & Green Districts</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -23,21 +23,39 @@
             margin: 0;
             padding: 0;
         }
-        /* Enhances the Dark Matter tiles so roads render in glowing white */
+        /* Dark Matter tiles with high-contrast white roads */
         .leaflet-tile-pane {
             filter: brightness(180%) contrast(150%);
         }
-        /* Custom Sci-Fi Label Overlay with Centered Text */
-        .scifi-label {
+        /* Sci-Fi Label for Spire District (Cyan) */
+        .scifi-label-spire {
             background: rgba(0, 240, 255, 0.15);
             border: 1px solid #00f0ff;
             color: #00f0ff;
             font-family: 'Orbitron', sans-serif;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 700;
             padding: 6px 12px;
             letter-spacing: 2px;
             box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+            text-transform: uppercase;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            white-space: nowrap;
+        }
+        /* Sci-Fi Label for Green District (Neon Green) */
+        .scifi-label-green {
+            background: rgba(40, 167, 69, 0.15);
+            border: 1px solid #28a745;
+            color: #28a745;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 6px 12px;
+            letter-spacing: 2px;
+            box-shadow: 0 0 15px rgba(40, 167, 69, 0.4);
             text-transform: uppercase;
             text-align: center;
             display: flex;
@@ -65,7 +83,7 @@
         // Initialize map centered over downtown Raleigh
         const map = L.map('map', {
             zoomControl: false
-        }).setView([35.775, -78.635], 14);
+        }).setView([35.775, -78.650], 13);
 
         // Add CartoDB Dark Matter No-Labels basemap
         L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
@@ -74,7 +92,7 @@
             attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
         }).addTo(map);
 
-        // Spire District Boundary Coordinates
+        // 1. Spire District Boundary Coordinates
         const spireCoords = [
             [35.804623, -78.623870],
             [35.792988, -78.624918],
@@ -94,24 +112,77 @@
             [35.804518, -78.623968]
         ];
 
-        // Render the Spire District polygon overlay with sci-fi HUD styling
+        // Render Spire District (Cyan theme)
         const spirePolygon = L.polygon(spireCoords, {
             color: "#00f0ff",
             weight: 3,
             dashArray: '6, 6',
             fillColor: "#00f0ff",
-            fillOpacity: 0.15
+            fillOpacity: 0.12
         }).addTo(map);
 
-        spirePolygon.bindPopup(`<strong>SECTOR: SPIRE DISTRICT</strong><br>[DARK THEME ACTIVE]`);
+        spirePolygon.bindPopup(`<strong>SECTOR: SPIRE DISTRICT</strong>`);
 
-        const labelCenter = spirePolygon.getBounds().getCenter();
-        const scifiMarker = L.marker(labelCenter, {
+        const spireCenter = spirePolygon.getBounds().getCenter();
+        L.marker(spireCenter, {
             icon: L.divIcon({
-                className: 'scifi-label',
+                className: 'scifi-label-spire',
                 html: 'SPIRE DISTRICT',
                 iconSize: [160, 36],
                 iconAnchor: [80, 18]
+            })
+        }).addTo(map);
+
+        // 2. Green District Boundary Coordinates
+        const greenCoords = [
+            [35.757540, -78.665297],
+            [35.770190, -78.647975],
+            [35.774289, -78.655987],
+            [35.777890, -78.650646],
+            [35.780953, -78.650566],
+            [35.781101, -78.652045],
+            [35.782196, -78.654488],
+            [35.782701, -78.655254],
+            [35.783673, -78.656665],
+            [35.784381, -78.658311],
+            [35.785345, -78.660508],
+            [35.786128, -78.662385],
+            [35.787863, -78.668862],
+            [35.788682, -78.672191],
+            [35.790478, -78.679075],
+            [35.793469, -78.684431],
+            [35.788423, -78.686798],
+            [35.775556, -78.680922],
+            [35.773335, -78.683289],
+            [35.769294, -78.691066],
+            [35.769123, -78.691268],
+            [35.759764, -78.690935],
+            [35.754413, -78.694246],
+            [35.753638, -78.694550],
+            [35.752037, -78.694747],
+            [35.754893, -78.679786],
+            [35.756769, -78.670554],
+            [35.757326, -78.665232]
+        ];
+
+        // Render Green District (Neon Green theme)
+        const greenPolygon = L.polygon(greenCoords, {
+            color: "#28a745",
+            weight: 3,
+            dashArray: '6, 6',
+            fillColor: "#28a745",
+            fillOpacity: 0.12
+        }).addTo(map);
+
+        greenPolygon.bindPopup(`<strong>SECTOR: GREEN ZONE</strong>`);
+
+        const greenCenter = greenPolygon.getBounds().getCenter();
+        L.marker(greenCenter, {
+            icon: L.divIcon({
+                className: 'scifi-label-green',
+                html: 'GREEN ZONE',
+                iconSize: [140, 36],
+                iconAnchor: [70, 18]
             })
         }).addTo(map);
     </script>
