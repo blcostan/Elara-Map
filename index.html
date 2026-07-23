@@ -92,6 +92,10 @@
             attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
         }).addTo(map);
 
+        // Shared exact shared border points between the two districts:
+        // Start: [35.770438, -78.648150]
+        // End:   [35.754625, -78.642027]
+
         // 1. Spire District Boundary Coordinates
         const spireCoords = [
             [35.804623, -78.623870],
@@ -101,9 +105,8 @@
             [35.757857, -78.612825],
             [35.753120, -78.623897],
             [35.754583, -78.638917],
-            [35.754490, -78.642084],
-            [35.769476, -78.648465],
-            [35.770238, -78.648190],
+            [35.754625, -78.642027], // Shared southern endpoint
+            [35.770438, -78.648150], // Shared northern starting point
             [35.774372, -78.655836],
             [35.777774, -78.650595],
             [35.778192, -78.650526],
@@ -140,8 +143,8 @@
             [35.754784, -78.655040],
             [35.753339, -78.651349],
             [35.752938, -78.649096],
-            [35.754490, -78.642084],
-            [35.770238, -78.648190],
+            [35.754625, -78.642027], // Shared southern endpoint
+            [35.770438, -78.648150], // Shared northern starting point
             [35.774372, -78.655836],
             [35.777774, -78.650595],
             [35.780953, -78.650566],
@@ -181,7 +184,6 @@
 
         greenPolygon.bindPopup(`<strong>SECTOR: GREEN DISTRICT</strong>`);
 
-        // Shifted down and offset back to the left by another 0.0025 (bringing longitude offset to 0.0)
         const greenCenter = greenPolygon.getBounds().getCenter();
         const adjustedGreenCenter = [greenCenter.lat - 0.008, greenCenter.lng + 0.0];
 
