@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Raleigh Custom Zones Map</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+    <style>
+        #map {
+            height: 100vh;
+            width: 100%;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        /* Custom filter to mimic a clean greyscale/monochrome Snazzy Maps look for free */
+        .leaflet-tile-pane {
+            filter: grayscale(100%) contrast(110%) brightness(110%);
+        }
+    </style>
+</head>
+<body>
+
+    <div id="map"></div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" 
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script>
+        // 1. Initialize map centered over Raleigh
+        const map = L.map('map').setView([35.7796, -78.6382], 13);
+
+        // 2. Add free OpenStreetMap base tiles
+        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            maxZoom: 19,
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // 3. Define your custom zones with coordinates
+        const zones = [
+            {
+                name: "Industrial District",
+                color: "#6c757d",
+                coords: [
+                    [35.815, -78.660],
+                    [35.820, -78.600],
+                    [35.785, -78.610],
+                    [35.785, -78.655]
+                ]
+            },
+            {
+                name: "Fringe City",
+                color: "#fd7e14",
+                coords: [
+                    [35.790, -78.680],
+                    [35.795, -78.615],
+                    [35.750, -78.640],
+                    [35.720, -78.675]
+                ]
+            },
+            {
+                name: "Green Zone",
+                color: "#28a745",
+                coords: [
+                    [35.765, -78.670],
+                    [35.770, -78.635],
+                    [35.735, -78.645],
+                    [35.740, -78.670]
+                ]
+            },
+            {
+                name: "Spire District",
+                color: "#ffc107",
+                coords: [
+                    [35.780, -78.640],
+                    [35.785, -78.605],
+                    [35.730, -78.615],
+                    [35.730, -78.645]
+                ]
+            },
+            {
+                name: "Downtown",
+                color: "#e2e8f0",
+                coords: [
+                    [35.785, -78.605],
+                    [35.780, -78.570],
+                    [35.735, -78.575],
+                    [35.730, -78.615]
+                ]
+            },
+            {
+                name: "The Cinder",
+                color: "#556b2f",
+                coords: [
+                    [35.790, -78.590],
+                    [35.780, -78.540],
+                    [35.725, -78.545],
+                    [35.735, -78.575]
+                ]
+            },
+            {
+                name: "Sumptown",
+                color: "#000000",
+                coords: [
+                    [35.735, -78.580],
+                    [35.735, -78.490],
+                    [35.715, -78.490],
+                    [35.715, -78.580]
+                ]
+            }
+        ];
+
+        // 4. Loop through and add polygon overlays to the map
+        zones.forEach(zone => {
+            const polygon = L.polygon(zone.coords, {
+                color: zone.color,
+                weight: 2,
+                fillColor: zone.color,
+                fillOpacity: 0.45
+            }).addTo(map);
+
+            // Add click popups with zone names
+            polygon.bindPopup(`<strong>${zone.name}</strong>`);
+        });
+    </script>
+</body>
+</html>
