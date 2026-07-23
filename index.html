@@ -16,16 +16,16 @@
         #map {
             height: 100vh;
             width: 100%;
-            background-color: #000000; /* Pure black void background */
+            background-color: #000000;
         }
         html, body {
             height: 100%;
             margin: 0;
             padding: 0;
         }
-        /* Pure Black and White map styling using high contrast inversion */
+        /* Inverts the CartoDB light tiles so background becomes deep black and roads render in bright white */
         .leaflet-tile-pane {
-            filter: grayscale(100%) invert(100%) contrast(200%) brightness(80%);
+            filter: invert(100%) grayscale(100%) contrast(300%) brightness(90%);
         }
         /* Custom Sci-Fi Label Overlay */
         .scifi-label {
@@ -63,7 +63,7 @@
             zoomControl: false
         }).setView([35.775, -78.635], 14);
 
-        // Add CartoDB Positron No-Labels basemap (Clean text-free base)
+        // Add CartoDB Positron No-Labels basemap
         L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
             maxZoom: 20,
             subdomains: 'abcd',
@@ -72,37 +72,35 @@
 
         // Spire District Boundary Coordinates
         const spireCoords = [
-            [35.804623, -78.623870], // Start point near Capital Blvd / Brookside
-            [35.792988, -78.624918], // South along Brookside Dr
-            [35.792937, -78.612899], // East along Glascock St
-            [35.769760, -78.614413], // South along Raleigh Blvd
-            [35.757857, -78.612825], // South along Raleigh Blvd to I-440 corridor
-            [35.753120, -78.623897], // West along I-440 southern border segment
-            [35.754583, -78.638917], // Continuing west along I-440 corridor
-            [35.754324, -78.641913], // Hitting the western/southwestern I-440 transition point
-            [35.769476, -78.648465], // North via Lake Wheeler Rd to S Saunders St
-            [35.770238, -78.648190], // North to Western Blvd
-            [35.774372, -78.655836], // West to train tracks
-            [35.777774, -78.650595], // NE along train tracks
-            [35.778192, -78.650526], // Transition point
-            [35.788695, -78.651009], // Following St. Mary's St north
-            [35.788580, -78.643067], // East on W Peace St
-            [35.804518, -78.623968]  // North on Capital Blvd to complete loop
+            [35.804623, -78.623870],
+            [35.792988, -78.624918],
+            [35.792937, -78.612899],
+            [35.769760, -78.614413],
+            [35.757857, -78.612825],
+            [35.753120, -78.623897],
+            [35.754583, -78.638917],
+            [35.754324, -78.641913],
+            [35.769476, -78.648465],
+            [35.770238, -78.648190],
+            [35.774372, -78.655836],
+            [35.777774, -78.650595],
+            [35.778192, -78.650526],
+            [35.788695, -78.651009],
+            [35.788580, -78.643067],
+            [35.804518, -78.623968]
         ];
 
-        // Render the exact Spire District polygon overlay with sci-fi HUD styling
+        // Render the Spire District polygon overlay with sci-fi HUD styling
         const spirePolygon = L.polygon(spireCoords, {
-            color: "#00f0ff",       // Cyan neon border
+            color: "#00f0ff",
             weight: 3,
-            dashArray: '6, 6',      // Tactical dashed grid perimeter
+            dashArray: '6, 6',
             fillColor: "#00f0ff",
-            fillOpacity: 0.15       // Holographic translucent fill
+            fillOpacity: 0.15
         }).addTo(map);
 
-        // Add interactive pop-up log
-        spirePolygon.bindPopup(`<strong>SECTOR: SPIRE DISTRICT</strong><br>[MONOCHROME TACTICAL HUD]`);
+        spirePolygon.bindPopup(`<strong>SECTOR: SPIRE DISTRICT</strong><br>[BLACK BACKGROUND / WHITE ROADS]`);
 
-        // Permanently attach the glowing sci-fi text label to the center of the zone
         const labelCenter = spirePolygon.getBounds().getCenter();
         const scifiMarker = L.marker(labelCenter, {
             icon: L.divIcon({
