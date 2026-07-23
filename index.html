@@ -181,9 +181,9 @@
 
         greenPolygon.bindPopup(`<strong>SECTOR: GREEN DISTRICT</strong>`);
 
-        // Shifted down (-0.008 in latitude) and slightly left so it sits cleanly in the lower-middle portion of the Green District
+        // Shifted further down and to the right (+0.005 in longitude) to center it nicely in the lower right portion of the zone
         const greenCenter = greenPolygon.getBounds().getCenter();
-        const adjustedGreenCenter = [greenCenter.lat - 0.008, greenCenter.lng - 0.012];
+        const adjustedGreenCenter = [greenCenter.lat - 0.008, greenCenter.lng + 0.005];
 
         L.marker(adjustedGreenCenter, {
             icon: L.divIcon({
