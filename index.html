@@ -27,7 +27,7 @@
         .leaflet-tile-pane {
             filter: brightness(180%) contrast(150%);
         }
-        /* Custom Sci-Fi Label Overlay */
+        /* Custom Sci-Fi Label Overlay with Centered Text */
         .scifi-label {
             background: rgba(0, 240, 255, 0.15);
             border: 1px solid #00f0ff;
@@ -39,6 +39,10 @@
             letter-spacing: 2px;
             box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
             text-transform: uppercase;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             white-space: nowrap;
         }
         .leaflet-popup-content-wrapper, .leaflet-popup-tip {
@@ -63,7 +67,7 @@
             zoomControl: false
         }).setView([35.775, -78.635], 14);
 
-        // Add CartoDB Dark Matter No-Labels basemap (Native dark background with visible road networks)
+        // Add CartoDB Dark Matter No-Labels basemap
         L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
             maxZoom: 20,
             subdomains: 'abcd',
@@ -106,8 +110,8 @@
             icon: L.divIcon({
                 className: 'scifi-label',
                 html: 'SPIRE DISTRICT',
-                iconSize: [140, 30],
-                iconOffset: [-70, -15]
+                iconSize: [160, 36],
+                iconAnchor: [80, 18]
             })
         }).addTo(map);
     </script>
