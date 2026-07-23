@@ -16,20 +16,20 @@
         #map {
             height: 100vh;
             width: 100%;
-            background-color: #030712; /* Dark sci-fi void background */
+            background-color: #0d1b2a; /* Slightly lighter deep tech background */
         }
         html, body {
             height: 100%;
             margin: 0;
             padding: 0;
         }
-        /* Cyberpunk / Sci-Fi tactical map tile styling */
+        /* Adjusted Cyberpunk / Sci-Fi tactical map tile styling with brighter streets */
         .leaflet-tile-pane {
-            filter: brightness(25%) contrast(180%) saturate(30%) hue-rotate(180deg);
+            filter: brightness(45%) contrast(150%) saturate(50%) hue-rotate(180deg);
         }
         /* Custom Sci-Fi Label Overlay */
         .scifi-label {
-            background: rgba(0, 240, 255, 0.1);
+            background: rgba(0, 240, 255, 0.15);
             border: 1px solid #00f0ff;
             color: #00f0ff;
             font-family: 'Orbitron', sans-serif;
@@ -63,7 +63,7 @@
             zoomControl: false
         }).setView([35.7796, -78.6382], 15);
 
-        // Add free OpenStreetMap base tiles styled with dark-mode sci-fi CSS
+        // Add free OpenStreetMap base tiles styled with lighter sci-fi CSS
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; OpenStreetMap contributors'
