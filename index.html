@@ -16,18 +16,24 @@
         #map {
             height: 100vh;
             width: 100%;
-            background-color: #0d1b2a; /* Slightly lighter deep tech background */
+            background-color: #0d1b2a;
         }
         html, body {
             height: 100%;
             margin: 0;
             padding: 0;
         }
-        /* Adjusted Cyberpunk / Sci-Fi tactical map tile styling with brighter streets */
+        /* Brightens and hue-shifts the road grid into a neon aesthetic */
         .leaflet-tile-pane {
-            filter: brightness(45%) contrast(150%) saturate(50%) hue-rotate(180deg);
+            filter: brightness(50%) contrast(160%) saturate(40%) hue-rotate(180deg);
         }
-        /* Custom Sci-Fi Label Overlay */
+        /* Hides default map text/labels burned into standard tiles */
+        .leaflet-overlay-pane svg text, 
+        .leaflet-marker-icon, 
+        .leaflet-shadow-pane {
+            display: none !important;
+        }
+        /* Custom Sci-Fi Label Overlay for the Spire District */
         .scifi-label {
             background: rgba(0, 240, 255, 0.15);
             border: 1px solid #00f0ff;
@@ -63,7 +69,7 @@
             zoomControl: false
         }).setView([35.7796, -78.6382], 15);
 
-        // Add free OpenStreetMap base tiles styled with lighter sci-fi CSS
+        // Add free OpenStreetMap base tiles
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; OpenStreetMap contributors'
@@ -79,19 +85,19 @@
             [35.758, -78.645]
         ];
 
-        // Render the Spire District with sci-fi glowing neon styling
+        // Render the Spire District polygon overlay
         const spirePolygon = L.polygon(spireCoords, {
-            color: "#00f0ff",       // Cyan neon border
+            color: "#00f0ff",       
             weight: 3,
-            dashArray: '6, 6',      // Tactical dashed grid perimeter
+            dashArray: '6, 6',      
             fillColor: "#00f0ff",
-            fillOpacity: 0.15       // Holographic translucent fill
+            fillOpacity: 0.15       
         }).addTo(map);
 
         // Add interactive pop-up log
         spirePolygon.bindPopup(`<strong>SECTOR: SPIRE DISTRICT</strong><br>[DOWNTOWN CORE INITIALIZED]`);
 
-        // Permanently attach the glowing sci-fi text label to the center of the district
+        // Permanently attach the glowing sci-fi text label to the center
         const labelCenter = spirePolygon.getBounds().getCenter();
         const scifiMarker = L.marker(labelCenter, {
             icon: L.divIcon({
