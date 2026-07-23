@@ -16,16 +16,16 @@
         #map {
             height: 100vh;
             width: 100%;
-            background-color: #0d1b2a;
+            background-color: #000000; /* Pure black void background */
         }
         html, body {
             height: 100%;
             margin: 0;
             padding: 0;
         }
-        /* Clean text-free sci-fi tactical map styling */
+        /* Pure Black and White map styling using high contrast inversion */
         .leaflet-tile-pane {
-            filter: brightness(45%) contrast(160%) saturate(30%) hue-rotate(180deg);
+            filter: grayscale(100%) invert(100%) contrast(200%) brightness(80%);
         }
         /* Custom Sci-Fi Label Overlay */
         .scifi-label {
@@ -63,14 +63,14 @@
             zoomControl: false
         }).setView([35.775, -78.635], 14);
 
-        // Add CartoDB Positron No-Labels basemap (Clean text-free black & white base)
+        // Add CartoDB Positron No-Labels basemap (Clean text-free base)
         L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
             maxZoom: 20,
             subdomains: 'abcd',
             attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
         }).addTo(map);
 
-        // Spire District Boundary Coordinates with precise southern I-440 beltline alignment
+        // Spire District Boundary Coordinates
         const spireCoords = [
             [35.804623, -78.623870], // Start point near Capital Blvd / Brookside
             [35.792988, -78.624918], // South along Brookside Dr
@@ -100,7 +100,7 @@
         }).addTo(map);
 
         // Add interactive pop-up log
-        spirePolygon.bindPopup(`<strong>SECTOR: SPIRE DISTRICT</strong><br>[PRECISE SOUTHERN I-440 FENCE INITIALIZED]`);
+        spirePolygon.bindPopup(`<strong>SECTOR: SPIRE DISTRICT</strong><br>[MONOCHROME TACTICAL HUD]`);
 
         // Permanently attach the glowing sci-fi text label to the center of the zone
         const labelCenter = spirePolygon.getBounds().getCenter();
