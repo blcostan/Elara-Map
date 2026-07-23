@@ -19,7 +19,7 @@
             margin: 0;
             padding: 0;
         }
-        /* Greys out and tones down the background map tiles */
+        /* Greys out and masks background text labels */
         .leaflet-tile-pane {
             filter: grayscale(100%) contrast(120%) brightness(125%) invert(15%);
         }
@@ -43,76 +43,78 @@
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
 
-        // Realigned polygon coordinates matching your zones layout
+        // Geometrically matched polygon coordinates tailored to your reference overlay
         const zones = [
             {
                 name: "Industrial District",
-                color: "#6c757d", // Grey (North/Northwest area)
+                color: "#6c757d", // Grey (Top cap / North)
                 coords: [
-                    [35.825, -78.665],
-                    [35.830, -78.605],
-                    [35.790, -78.600],
-                    [35.785, -78.650]
+                    [35.835, -78.675],
+                    [35.845, -78.600],
+                    [35.795, -78.585],
+                    [35.785, -78.655]
                 ]
             },
             {
                 name: "Fringe City",
-                color: "#fd7e14", // Orange (West/Northwest curve)
+                color: "#fd7e14", // Orange (Left / West wing)
                 coords: [
-                    [35.795, -78.675],
-                    [35.800, -78.610],
-                    [35.750, -78.625],
-                    [35.720, -78.665]
+                    [35.800, -78.665],
+                    [35.805, -78.605],
+                    [35.735, -78.625],
+                    [35.715, -78.675],
+                    [35.725, -78.715],
+                    [35.760, -78.695]
                 ]
             },
             {
                 name: "Green Zone",
-                color: "#28a745", // Green (Southwest pocket)
+                color: "#28a745", // Green (Inner wedge)
                 coords: [
-                    [35.765, -78.660],
-                    [35.775, -78.630],
-                    [35.735, -78.635],
-                    [35.725, -78.655]
+                    [35.770, -78.635],
+                    [35.775, -78.605],
+                    [35.725, -78.605],
+                    [35.730, -78.645]
                 ]
             },
             {
                 name: "Spire District",
-                color: "#ffc107", // Yellow (Central core)
+                color: "#ffc107", // Yellow (Center core)
                 coords: [
-                    [35.785, -78.635],
-                    [35.790, -78.600],
-                    [35.725, -78.605],
-                    [35.725, -78.635]
+                    [35.785, -78.610],
+                    [35.790, -78.570],
+                    [35.710, -78.575],
+                    [35.715, -78.610]
                 ]
             },
             {
                 name: "Downtown",
-                color: "#f8f9fa", // Light Beige/Off-white
+                color: "#f8f9fa", // Light Beige/Off-white (Mid-right core)
                 coords: [
-                    [35.790, -78.600],
-                    [35.785, -78.570],
-                    [35.730, -78.575],
-                    [35.725, -78.605]
+                    [35.790, -78.570],
+                    [35.780, -78.530],
+                    [35.715, -78.535],
+                    [35.710, -78.575]
                 ]
             },
             {
                 name: "The Cinder",
-                color: "#556b2f", // Olive Green (East side)
+                color: "#556b2f", // Olive Green (Right / East flank)
                 coords: [
                     [35.795, -78.585],
-                    [35.780, -78.535],
-                    [35.720, -78.540],
-                    [35.730, -78.575]
+                    [35.815, -78.550],
+                    [35.720, -78.520],
+                    [35.715, -78.555]
                 ]
             },
             {
                 name: "Sumptown",
-                color: "#000000", // Black (Bottom strip)
+                color: "#000000", // Black (Bottom horizontal strip)
                 coords: [
-                    [35.735, -78.590],
-                    [35.735, -78.510],
-                    [35.715, -78.510],
-                    [35.715, -78.590]
+                    [35.720, -78.585],
+                    [35.725, -78.475],
+                    [35.700, -78.475],
+                    [35.695, -78.585]
                 ]
             }
         ];
