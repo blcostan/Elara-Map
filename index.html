@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Raleigh Custom Zones Map</title>
+    <title>Raleigh - Spire District</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -9,19 +9,43 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" 
           integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
 
+    <!-- Google Fonts for Sci-Fi Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
         #map {
             height: 100vh;
             width: 100%;
+            background-color: #030712; /* Dark sci-fi void background */
         }
         html, body {
             height: 100%;
             margin: 0;
             padding: 0;
         }
-        /* Greys out and masks background text labels */
+        /* Cyberpunk / Sci-Fi tactical map tile styling */
         .leaflet-tile-pane {
-            filter: grayscale(100%) contrast(120%) brightness(125%) invert(15%);
+            filter: brightness(25%) contrast(180%) saturate(30%) hue-rotate(180deg);
+        }
+        /* Custom Sci-Fi Label Overlay */
+        .scifi-label {
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid #00f0ff;
+            color: #00f0ff;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            padding: 6px 12px;
+            letter-spacing: 2px;
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+            background: #0b0f19;
+            color: #00f0ff;
+            border: 1px solid #00f0ff;
+            font-family: 'Orbitron', sans-serif;
         }
     </style>
 </head>
@@ -34,102 +58,49 @@
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <script>
-        // Initialize map centered over Raleigh
-        const map = L.map('map').setView([35.7796, -78.6382], 13);
+        // Initialize map centered over Downtown Raleigh (The Spire District)
+        const map = L.map('map', {
+            zoomControl: false
+        }).setView([35.7796, -78.6382], 15);
 
-        // Add free OpenStreetMap base tiles
+        // Add free OpenStreetMap base tiles styled with dark-mode sci-fi CSS
         L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
             maxZoom: 19,
             attribution: '&copy; OpenStreetMap contributors'
         }).addTo(map);
 
-        // Geometrically matched polygon coordinates tailored to your reference overlay
-        const zones = [
-            {
-                name: "Industrial District",
-                color: "#6c757d", // Grey (Top cap / North)
-                coords: [
-                    [35.835, -78.675],
-                    [35.845, -78.600],
-                    [35.795, -78.585],
-                    [35.785, -78.655]
-                ]
-            },
-            {
-                name: "Fringe City",
-                color: "#fd7e14", // Orange (Left / West wing)
-                coords: [
-                    [35.800, -78.665],
-                    [35.805, -78.605],
-                    [35.735, -78.625],
-                    [35.715, -78.675],
-                    [35.725, -78.715],
-                    [35.760, -78.695]
-                ]
-            },
-            {
-                name: "Green Zone",
-                color: "#28a745", // Green (Inner wedge)
-                coords: [
-                    [35.770, -78.635],
-                    [35.775, -78.605],
-                    [35.725, -78.605],
-                    [35.730, -78.645]
-                ]
-            },
-            {
-                name: "Spire District",
-                color: "#ffc107", // Yellow (Center core)
-                coords: [
-                    [35.785, -78.610],
-                    [35.790, -78.570],
-                    [35.710, -78.575],
-                    [35.715, -78.610]
-                ]
-            },
-            {
-                name: "Downtown",
-                color: "#f8f9fa", // Light Beige/Off-white (Mid-right core)
-                coords: [
-                    [35.790, -78.570],
-                    [35.780, -78.530],
-                    [35.715, -78.535],
-                    [35.710, -78.575]
-                ]
-            },
-            {
-                name: "The Cinder",
-                color: "#556b2f", // Olive Green (Right / East flank)
-                coords: [
-                    [35.795, -78.585],
-                    [35.815, -78.550],
-                    [35.720, -78.520],
-                    [35.715, -78.555]
-                ]
-            },
-            {
-                name: "Sumptown",
-                color: "#000000", // Black (Bottom horizontal strip)
-                coords: [
-                    [35.720, -78.585],
-                    [35.725, -78.475],
-                    [35.700, -78.475],
-                    [35.695, -78.585]
-                ]
-            }
+        // Spire District (Downtown Raleigh Core) Polygon Coordinates
+        const spireCoords = [
+            [35.788, -78.648],
+            [35.792, -78.625],
+            [35.785, -78.605],
+            [35.768, -78.602],
+            [35.755, -78.618],
+            [35.758, -78.645]
         ];
 
-        // Render zones onto the map
-        zones.forEach(zone => {
-            const polygon = L.polygon(zone.coords, {
-                color: zone.color,
-                weight: 2,
-                fillColor: zone.color,
-                fillOpacity: 0.5
-            }).addTo(map);
+        // Render the Spire District with sci-fi glowing neon styling
+        const spirePolygon = L.polygon(spireCoords, {
+            color: "#00f0ff",       // Cyan neon border
+            weight: 3,
+            dashArray: '6, 6',      // Tactical dashed grid perimeter
+            fillColor: "#00f0ff",
+            fillOpacity: 0.15       // Holographic translucent fill
+        }).addTo(map);
 
-            polygon.bindPopup(`<strong>${zone.name}</strong>`);
-        });
+        // Add interactive pop-up log
+        spirePolygon.bindPopup(`<strong>SECTOR: SPIRE DISTRICT</strong><br>[DOWNTOWN CORE INITIALIZED]`);
+
+        // Permanently attach the glowing sci-fi text label to the center of the district
+        const labelCenter = spirePolygon.getBounds().getCenter();
+        const scifiMarker = L.marker(labelCenter, {
+            icon: L.divIcon({
+                className: 'scifi-label',
+                html: 'SPIRE DISTRICT',
+                iconSize: [140, 30],
+                iconOffset: [-70, -15]
+            })
+        }).addTo(map);
     </script>
 </body>
 </html>
