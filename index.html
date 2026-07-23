@@ -63,11 +63,40 @@
             white-space: nowrap;
             transition: font-size 0.2s ease, padding 0.2s ease;
         }
+        /* Custom Interactive POI Marker Styling */
+        .poi-pulse-marker {
+            background: #ff0055;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #ff0055, 0 0 20px #ff0055;
+            cursor: pointer;
+        }
+        /* Popup Theme Customization */
         .leaflet-popup-content-wrapper, .leaflet-popup-tip {
             background: #0b0f19;
             color: #00f0ff;
             border: 1px solid #00f0ff;
             font-family: 'Orbitron', sans-serif;
+        }
+        .story-popup {
+            max-width: 260px;
+            font-size: 11px;
+            line-height: 1.4;
+            color: #c0d0e0;
+        }
+        .story-popup h3 {
+            color: #ff0055;
+            margin: 0 0 8px 0;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .story-popup img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border: 1px solid #00f0ff;
+            margin-bottom: 8px;
         }
     </style>
 </head>
@@ -120,8 +149,6 @@
             fillOpacity: 0.12
         }).addTo(map);
 
-        spirePolygon.bindPopup(`<strong>SECTOR: SPIRE DISTRICT</strong>`);
-
         const spireCenter = spirePolygon.getBounds().getCenter();
         const spireMarker = L.marker(spireCenter, {
             icon: L.divIcon({
@@ -163,7 +190,7 @@
             [35.753638, -78.694550],
             [35.752037, -78.694747],
             [35.754893, -78.679786],
-            [35.756769, -78.670554],
+            [35.76769, -78.670554],
             [35.757326, -78.665232]
         ];
 
@@ -176,8 +203,6 @@
             fillOpacity: 0.12
         }).addTo(map);
 
-        greenPolygon.bindPopup(`<strong>SECTOR: GREEN DISTRICT</strong>`);
-
         const greenCenter = greenPolygon.getBounds().getCenter();
         const adjustedGreenCenter = [greenCenter.lat - 0.008, greenCenter.lng + 0.0];
 
@@ -188,13 +213,35 @@
             })
         }).addTo(map);
 
-        // Dynamic zoom-scaling function to scale font size relative to map zoom level
+        // --- INTERACTIVE STORYTELLING POI (Cloud Plaza) ---
+        // Placed near the base of the Spire towers
+        const cloudPlazaMarker = L.marker([35.778, -78.630], {
+            icon: L.divIcon({
+                className: 'poi-pulse-marker',
+                iconSize: [12, 12],
+                iconAnchor: [6, 6]
+            })
+        }).addTo(map);
+
+        // Popup containing lore, violent neon description, and image slot
+        const plazaContent = `
+            <div class="story-popup">
+                <h3>Cloud Plaza & Apex Overlook</h3>
+                <!-- You can swap this placeholder src with your generated image URL later -->
+                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=500&q=80" alt="Cloud Plaza">
+                <p><strong>Atmosphere:</strong> Bone-dry, thin air floating above the smog layer. Pierced by obsidian-glass towers reflecting violent neon pink and cyan signage across polished titanium.</p>
+                <p><em>"Down below, the city is a map of their own making. Up here, the silence is heavy."</em></p>
+            </div>
+        `;
+        cloudPlazaMarker.bindPopup(plazaContent);
+
+
+        // Dynamic zoom-scaling function for labels
         function updateLabelSizes() {
             const zoom = map.getZoom();
-            // Base scale factor centered around zoom level 13
             let fontSize = 10 + (zoom - 11) * 1.8;
-            if (fontSize < 8) fontSize = 8;   // Minimum size limit
-            if (fontSize > 20) fontSize = 20; // Maximum size limit
+            if (fontSize < 8) fontSize = 8;   
+            if (fontSize > 20) fontSize = 20; 
 
             const elements = document.querySelectorAll('.scifi-label-spire, .scifi-label-green');
             elements.forEach(el => {
@@ -203,7 +250,6 @@
             });
         }
 
-        // Run on zoom change and initial load
         map.on('zoomend', updateLabelSizes);
         updateLabelSizes();
     </script>
