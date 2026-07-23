@@ -65,10 +65,10 @@
         }
         /* Custom Interactive POI Marker Styling */
         .poi-pulse-marker {
-            background: #ff0055;
+            background: #ff00ff;
             border: 2px solid #ffffff;
             border-radius: 50%;
-            box-shadow: 0 0 10px #ff0055, 0 0 20px #ff0055;
+            box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
             cursor: pointer;
         }
         /* Popup Theme Customization */
@@ -85,7 +85,7 @@
             color: #c0d0e0;
         }
         .story-popup h3 {
-            color: #ff0055;
+            color: #ff00ff;
             margin: 0 0 8px 0;
             font-size: 13px;
             letter-spacing: 1px;
@@ -95,7 +95,7 @@
             width: 100%;
             height: 140px;
             object-fit: cover;
-            border: 1px solid #00f0ff;
+            border: 1px solid #ff00ff;
             margin-bottom: 8px;
         }
     </style>
@@ -149,6 +149,8 @@
             fillOpacity: 0.12
         }).addTo(map);
 
+        spirePolygon.bindPopup(`<strong>SECTOR: SPIRE DISTRICT</strong>`);
+
         const spireCenter = spirePolygon.getBounds().getCenter();
         const spireMarker = L.marker(spireCenter, {
             icon: L.divIcon({
@@ -190,7 +192,7 @@
             [35.753638, -78.694550],
             [35.752037, -78.694747],
             [35.754893, -78.679786],
-            [35.76769, -78.670554],
+            [35.756769, -78.670554],
             [35.757326, -78.665232]
         ];
 
@@ -203,6 +205,8 @@
             fillOpacity: 0.12
         }).addTo(map);
 
+        greenPolygon.bindPopup(`<strong>SECTOR: GREEN DISTRICT</strong>`);
+
         const greenCenter = greenPolygon.getBounds().getCenter();
         const adjustedGreenCenter = [greenCenter.lat - 0.008, greenCenter.lng + 0.0];
 
@@ -214,7 +218,6 @@
         }).addTo(map);
 
         // --- INTERACTIVE STORYTELLING POI (Cloud Plaza) ---
-        // Placed near the base of the Spire towers
         const cloudPlazaMarker = L.marker([35.778, -78.630], {
             icon: L.divIcon({
                 className: 'poi-pulse-marker',
@@ -223,18 +226,16 @@
             })
         }).addTo(map);
 
-        // Popup containing lore, violent neon description, and image slot
         const plazaContent = `
             <div class="story-popup">
                 <h3>Cloud Plaza & Apex Overlook</h3>
-                <!-- You can swap this placeholder src with your generated image URL later -->
-                <img src="https://images.unsplash.com/photo-1518709268805-4e9042af9f23?auto=format&fit=crop&w=500&q=80" alt="Cloud Plaza">
-                <p><strong>Atmosphere:</strong> Bone-dry, thin air floating above the smog layer. Pierced by obsidian-glass towers reflecting violent neon pink and cyan signage across polished titanium.</p>
-                <p><em>"Down below, the city is a map of their own making. Up here, the silence is heavy."</em></p>
+                <!-- High-altitude futuristic cyberpunk cityscape with violent violet/purple neon lighting and glass overlook -->
+                <img src="https://images.unsplash.com/photo-1508739773434-c26b3d09e071?auto=format&fit=crop&w=500&q=80" alt="Cloud Plaza Overlook">
+                <p><strong>Atmosphere:</strong> High above the smog layer. Pierced by obsidian-glass towers cutting through the clouds with violent violet and magenta neon lighting reflecting across polished glass floors.</p>
+                <p><em>"Standing on the transparent glass terrace, the elite look down on the entire Raleigh Sector as a map of their own making."</em></p>
             </div>
         `;
         cloudPlazaMarker.bindPopup(plazaContent);
-
 
         // Dynamic zoom-scaling function for labels
         function updateLabelSizes() {
