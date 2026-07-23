@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Raleigh - Spire District</title>
+    <title>Raleigh - Spire District Expanded</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -23,17 +23,11 @@
             margin: 0;
             padding: 0;
         }
-        /* Brightens and hue-shifts the road grid into a neon aesthetic */
+        /* Cyberpunk / Sci-Fi tactical map tile styling with zero text interference */
         .leaflet-tile-pane {
-            filter: brightness(50%) contrast(160%) saturate(40%) hue-rotate(180deg);
+            filter: brightness(45%) contrast(160%) saturate(30%) hue-rotate(180deg);
         }
-        /* Hides default map text/labels burned into standard tiles */
-        .leaflet-overlay-pane svg text, 
-        .leaflet-marker-icon, 
-        .leaflet-shadow-pane {
-            display: none !important;
-        }
-        /* Custom Sci-Fi Label Overlay for the Spire District */
+        /* Custom Sci-Fi Label Overlay */
         .scifi-label {
             background: rgba(0, 240, 255, 0.15);
             border: 1px solid #00f0ff;
@@ -64,40 +58,43 @@
             integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
 
     <script>
-        // Initialize map centered over Downtown Raleigh (The Spire District)
+        // Initialize map centered over expanded downtown/central Raleigh
         const map = L.map('map', {
             zoomControl: false
-        }).setView([35.7796, -78.6382], 15);
+        }).setView([35.770, -78.645], 13);
 
-        // Add free OpenStreetMap base tiles
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            maxZoom: 19,
-            attribution: '&copy; OpenStreetMap contributors'
+        // Add CartoDB Positron No-Labels basemap (Clean, text-free black & white base)
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
+            maxZoom: 20,
+            subdomains: 'abcd',
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>'
         }).addTo(map);
 
-        // Spire District (Downtown Raleigh Core) Polygon Coordinates
+        // Expanded Spire District Coordinates 
+        // Covers: Glenwood South (North), Warehouse District & Boylan Heights (West/Center), Caraleigh (Southwest), down to the I-440 Beltline (South)
         const spireCoords = [
-            [35.788, -78.648],
-            [35.792, -78.625],
-            [35.785, -78.605],
-            [35.768, -78.602],
-            [35.755, -78.618],
-            [35.758, -78.645]
+            [35.802, -78.648], // North tip (Glenwood South upper boundary)
+            [35.795, -78.632], // Northeast boundary (Capital Blvd/Downtown edge)
+            [35.775, -78.625], // East boundary 
+            [35.732, -78.620], // South boundary extending down to the I-440 corridor near Caraleigh
+            [35.728, -78.675], // Southwest boundary (Caraleigh / Beltline perimeter)
+            [35.750, -78.685], // West boundary (Boylan Heights / Western Blvd stretch)
+            [35.785, -78.672]  // Northwest boundary enclosing upper Glenwood area
         ];
 
-        // Render the Spire District polygon overlay
+        // Render the expanded Spire District polygon overlay with a sci-fi HUD aesthetic
         const spirePolygon = L.polygon(spireCoords, {
-            color: "#00f0ff",       
+            color: "#00f0ff",       // Cyan neon border
             weight: 3,
-            dashArray: '6, 6',      
+            dashArray: '6, 6',      // Tactical dashed grid perimeter
             fillColor: "#00f0ff",
-            fillOpacity: 0.15       
+            fillOpacity: 0.12       // Holographic translucent fill
         }).addTo(map);
 
         // Add interactive pop-up log
-        spirePolygon.bindPopup(`<strong>SECTOR: SPIRE DISTRICT</strong><br>[DOWNTOWN CORE INITIALIZED]`);
+        spirePolygon.bindPopup(`<strong>SECTOR: SPIRE DISTRICT</strong><br>[EXPANDED CORE: Glenwood S. / Warehouse / Boylan / Caraleigh / I-440]`);
 
-        // Permanently attach the glowing sci-fi text label to the center
+        // Permanently attach the glowing sci-fi text label to the center of the expanded district
         const labelCenter = spirePolygon.getBounds().getCenter();
         const scifiMarker = L.marker(labelCenter, {
             icon: L.divIcon({
