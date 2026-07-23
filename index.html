@@ -16,16 +16,16 @@
         #map {
             height: 100vh;
             width: 100%;
-            background-color: #000000;
+            background-color: #0b0f19;
         }
         html, body {
             height: 100%;
             margin: 0;
             padding: 0;
         }
-        /* Inverts the CartoDB light tiles so background becomes deep black and roads render in bright white */
+        /* Enhances the Dark Matter tiles so roads render in glowing white */
         .leaflet-tile-pane {
-            filter: invert(100%) grayscale(100%) contrast(300%) brightness(90%);
+            filter: brightness(180%) contrast(150%);
         }
         /* Custom Sci-Fi Label Overlay */
         .scifi-label {
@@ -63,8 +63,8 @@
             zoomControl: false
         }).setView([35.775, -78.635], 14);
 
-        // Add CartoDB Positron No-Labels basemap
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_nolabels/{z}/{x}/{y}{r}.png', {
+        // Add CartoDB Dark Matter No-Labels basemap (Native dark background with visible road networks)
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
             maxZoom: 20,
             subdomains: 'abcd',
             attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
@@ -99,7 +99,7 @@
             fillOpacity: 0.15
         }).addTo(map);
 
-        spirePolygon.bindPopup(`<strong>SECTOR: SPIRE DISTRICT</strong><br>[BLACK BACKGROUND / WHITE ROADS]`);
+        spirePolygon.bindPopup(`<strong>SECTOR: SPIRE DISTRICT</strong><br>[DARK THEME ACTIVE]`);
 
         const labelCenter = spirePolygon.getBounds().getCenter();
         const scifiMarker = L.marker(labelCenter, {
