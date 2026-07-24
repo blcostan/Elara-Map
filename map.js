@@ -346,6 +346,19 @@ glassHorizonMarker.bindPopup(`
         <p><em>"The ultimate divider between the sterile corporate luxury above and the struggles of the outer sectors below."</em></p>
     </div>
 `);
+// --- POI 11 (Fort Mordecai) ---
+const fortMordecaiMarker = L.marker([35.7960939686416, -78.65020263393107], {
+    icon: L.divIcon({ className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6] })
+}).addTo(map);
+const fortMordecaiImageUrl = "https://lh3.googleusercontent.com/d/1CWlN8sCb1-mD2x3kdYaUbf85rHlsa45F";
+fortMordecaiMarker.bindPopup(`
+    <div class="story-popup">
+        <h3>Fort Mordecai</h3>
+        <img src="${fortMordecaiImageUrl}" alt="Fort Mordecai Neighborhood">
+        <p><strong>Atmosphere:</strong> The most exclusive neighborhood outside of The Spire, situated within the Downtown District. A heavily secured enclave where the corporate elite reside when they want private backyards rather than tower living.</p>
+        <p><em>"Lush, manicured greenery and high-security seclusion just a stone's throw from the vertical corporate sprawl."</em></p>
+    </div>
+`);
 
 // Dynamic zoom-scaling function for labels
 function updateLabelSizes() {
