@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Raleigh - Spire & Green Districts</title>
+    <title>Raleigh - Spire, Green, and Sumptown Districts</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -27,7 +27,7 @@
         .leaflet-tile-pane {
             filter: brightness(180%) contrast(150%);
         }
-        /* Sci-Fi Label for Spire District (Cyan - border removed) */
+        /* Sci-Fi Label for Spire District (Cyan) */
         .scifi-label-spire {
             background: transparent;
             border: none;
@@ -44,7 +44,7 @@
             justify-content: center;
             transform: translate(-50%, -50%);
         }
-        /* Sci-Fi Label for Green District (Neon Green - border removed) */
+        /* Sci-Fi Label for Green District (Neon Green) */
         .scifi-label-green {
             background: transparent;
             border: none;
@@ -61,7 +61,7 @@
             justify-content: center;
             transform: translate(-50%, -50%);
         }
-        /* Sci-Fi Label for Sumptown (Polluted Indigo/Violet - border removed) */
+        /* Sci-Fi Label for Sumptown (Polluted Indigo/Violet) */
         .scifi-label-sumptown {
             background: transparent;
             border: none;
@@ -193,22 +193,49 @@
             })
         }).addTo(map);
 
-        // 3. Sumptown Initial Western Border Segment (Fixed syntax error)
+        // 3. Sumptown Boundary Coordinates (Spire eastern border -> MLK Blvd -> Poole Rd)
         const sumptownCoords = [
+            // Starting point hugging Spire's eastern border
             [35.75781968737243, -78.61280699773778],
             [35.764227331237606, -78.61482401869506],
             [35.76718720983446, -78.61465235733701],
             [35.768963084124536, -78.61420174627209],
-            [35.76976395571589, -78.61433049228121]
+            [35.76976395571589, -78.61433049228121],
+            // Turning right along MLK Blvd
+            [35.77076589778483, -78.61172373176922],
+            [35.7710096366165, -78.61075813663008],
+            [35.771061866268965, -78.60818321625906],
+            [35.771035751447016, -78.60714251927578],
+            [35.771061866271864, -78.60458905567752],
+            [35.77138394837071, -78.60274369607828],
+            [35.772054223151194, -78.6011880150208],
+            [35.7722718436183, -78.60065157327683],
+            [35.77261133035784, -78.59906370571471],
+            // Turning right onto Poole Rd
+            [35.77235018684068, -78.59799082222679],
+            [35.77182789723571, -78.59616691936726],
+            [35.77148840715171, -78.59451467879587],
+            [35.771949765117476, -78.59292681123374],
+            [35.772515577836465, -78.59151060502968],
+            [35.77264614945426, -78.59082395897302],
+            [35.77235831744404, -78.58549144225545],
+            [35.77202705893353, -78.58444522009997],
+            [35.77112644284386, -78.58324589166106],
+            [35.76983243641054, -78.5820975990514],
+            [35.768424533432345, -78.57949480207363],
+            [35.76787585863594, -78.57690476429848],
+            [35.76790691580093, -78.5742381736827],
+            // Closing back down to the start vertex
+            [35.75781968737243, -78.61280699773778]
         ];
 
-        // Render Sumptown segment (Polluted Indigo/Violet theme)
+        // Render Sumptown (Polluted Indigo/Violet theme)
         const sumptownPolygon = L.polygon(sumptownCoords, {
             color: "#a855f7", weight: 3, dashArray: '6, 6',
             fillColor: "#a855f7", fillOpacity: 0.12
         }).addTo(map);
 
-        sumptownPolygon.bindPopup(`<strong>SECTOR: SUMPTOWN (Drafting Western Border)</strong>`);
+        sumptownPolygon.bindPopup(`<strong>SECTOR: SUMPTOWN</strong>`);
 
         const sumptownCenter = sumptownPolygon.getBounds().getCenter();
         const sumptownMarker = L.marker(sumptownCenter, {
@@ -350,3 +377,4 @@
     </script>
 </body>
 </html>
+```eof
