@@ -233,6 +233,25 @@
         `;
         ashbyLibraryMarker.bindPopup(ashbyLibraryContent);
 
+        // --- INTERACTIVE STORYTELLING POI 4 (University Arboretum) ---
+        const arboretumMarker = L.marker([35.759486645620534, -78.67901893867499], {
+            icon: L.divIcon({
+                className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6]
+            })
+        }).addTo(map);
+
+        const arboretumImageUrl = "https://lh3.googleusercontent.com/d/1sKqoS2QRg_ijWfT6TxSdKehOV3xvXNjN";
+
+        const arboretumContent = `
+            <div class="story-popup">
+                <h3>University Arboretum & Experimental Forest</h3>
+                <img src="${arboretumImageUrl}" alt="University Arboretum">
+                <p><strong>Description:</strong> A sprawling, humid expanse of botanical research. While open to students and researchers, large sections are high-security genetic modification labs disguised as exotic rainforests. The air is thick with bio-engineered oxygen.</p>
+                <p><em>"Beyond the manicured paths lie the true experiments of the university's bio-engineering division."</em></p>
+            </div>
+        `;
+        arboretumMarker.bindPopup(arboretumContent);
+
         // Dynamic zoom-scaling function for labels
         function updateLabelSizes() {
             const zoom = map.getZoom();
