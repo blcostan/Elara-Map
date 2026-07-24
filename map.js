@@ -10,7 +10,7 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png'
     attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
 }).addTo(map);
 
-// 1. Spire District Boundary Coordinates (Left untouched per instructions)
+// 1. Spire District Boundary Coordinates (Left untouched / correct)
 const spireCoords = [
     [35.804623, -78.623870], [35.792988, -78.624918], [35.792937, -78.612899],
     [35.769760, -78.614413], [35.757857, -78.612825], [35.753120, -78.623897],
@@ -34,12 +34,12 @@ const spireMarker = L.marker(spireCenter, {
     })
 }).addTo(map);
 
-// 2. Green District Boundary Coordinates (Eastern border extended east to share Spire's western border)
+// 2. Green District Boundary Coordinates (Restored eastern boundary using blue circle area: sharing Spire's western line)
 const greenCoords = [
     [35.757379, -78.665168], [35.756508, -78.659847], [35.754784, -78.655040],
     [35.753339, -78.651349], [35.752938, -78.649096], [35.754625, -78.642027],
     [35.770438, -78.648150], [35.774372, -78.655836], [35.777774, -78.650595],
-    [35.778192, -78.650526], [35.788695, -78.651009], // Extended east to meet Spire's western line
+    [35.778192, -78.650526], [35.788695, -78.651009], 
     [35.780953, -78.650566], [35.781101, -78.652045], [35.782196, -78.654488],
     [35.782701, -78.655254], [35.783673, -78.656665], [35.784381, -78.658311],
     [35.785345, -78.660508], [35.786128, -78.662385], [35.787863, -78.668862],
@@ -104,7 +104,7 @@ const sumptownMarker = L.marker(sumptownCenter, {
     })
 }).addTo(map);
 
-// 4. Downtown District Boundary Coordinates (Eastern border extended east to share Spire's western border)
+// 4. Downtown District Boundary Coordinates (Restored eastern boundary using red circle area: hugging Spire's upper western line)
 const downtownCoords = [
     [35.78094518805033, -78.65057234059867], // Starting point shared with Spire & Green
     [35.780953, -78.650566],                 
@@ -178,7 +178,7 @@ const downtownCoords = [
     [35.79368791523968, -78.64185734770652],
     [35.7893896016572, -78.64288731598992],
     [35.788716318438, -78.64303166541058],
-    [35.788695, -78.651009], // Extended east to meet Spire's western line
+    [35.788695, -78.651009], // Extended east to meet Spire's upper western line
     [35.778192, -78.650526],
     [35.777774, -78.650595]
 ];
@@ -327,7 +327,7 @@ kikiHomeMarker.bindPopup(`
 // --- POI 10 (The Glass Horizon) ---
 const glassHorizonMarker = L.marker([35.80253699799375, -78.62560689468366], {
     icon: L.divIcon({ className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6] })
-}).addTo(map);
+}.addTo(map));
 const glassHorizonImageUrl = "https://lh3.googleusercontent.com/d/1u4eV2sXGMvDANTwqm_tOmQU8EPgsgvb0";
 glassHorizonMarker.bindPopup(`
     <div class="story-popup">
