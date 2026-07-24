@@ -368,6 +368,25 @@
         `;
         jaxLabMarker.bindPopup(jaxLabContent);
 
+	// --- INTERACTIVE STORYTELLING POI 7 (Cypress-Mire Market) ---
+        const cypressMireMarker = L.marker([35.758527336270575, -78.59404209450196], {
+            icon: L.divIcon({
+                className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6]
+            })
+        }).addTo(map);
+
+        const cypressMireImageUrl = "https://lh3.googleusercontent.com/d/1kZAtW-YnX4AnMzlmQ1P1sJRWWUqa6h5z";
+
+        const cypressMireContent = `
+            <div class="story-popup">
+                <h3>Cypress-Mire Market (The Float-Bazaar)</h3>
+                <img src="${cypressMireImageUrl}" alt="Cypress-Mire Market">
+                <p><strong>Atmosphere:</strong> A chaotic shanty-town built on unstable platforms floating above the polluted marshes of southern Sumptown. Illuminated by haphazard neon and bioluminescent runoff from the Spire.</p>
+                <p><em>"Where scavengers trade in salvage and black-market tech, all beneath the watchful, uncaring gaze of the corporate towers."</em></p>
+            </div>
+        `;
+        cypressMireMarker.bindPopup(cypressMireContent);
+
         // Dynamic zoom-scaling function for labels
         function updateLabelSizes() {
             const zoom = map.getZoom();
