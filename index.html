@@ -193,24 +193,23 @@
             })
         }).addTo(map);
 
-        // 3. Sumptown Boundary Coordinates (sharing eastern Spire border & hugging I-440 south)
+        // 3. Sumptown Boundary Coordinates (sharing Spire's exact eastern border points and aligning with I-440 south)
         const sumptownCoords = [
-            // West border sharing Spire's eastern border (from top-right down to bottom-right of Spire east edge)
+            // Exact shared eastern border points of the Spire District
             [35.792937, -78.612899],
             [35.769760, -78.614413],
             [35.757857, -78.612825],
-            // Hugging I-440 southward/eastward
-            [35.752300, -78.612500],
-            [35.748500, -78.608500],
-            [35.747200, -78.600000],
-            [35.747800, -78.591200],
-            // Extending East
+            // Following I-440 south-eastward as indicated by the red line corrections
+            [35.753120, -78.623897],
+            [35.748500, -78.618000],
+            [35.744200, -78.605000],
+            [35.743800, -78.595000],
+            // East side boundary continuing around
             [35.753351, -78.585943],
             [35.767930, -78.574290],
             [35.771746, -78.583910],
             [35.772532, -78.600019],
-            [35.770913, -78.610941],
-            [35.792937, -78.612899]
+            [35.770913, -78.610941]
         ];
 
         // Render Sumptown (Polluted Indigo/Violet theme)
