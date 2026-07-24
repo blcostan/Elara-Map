@@ -386,6 +386,25 @@
             </div>
         `;
         cypressMireMarker.bindPopup(cypressMireContent);
+	
+	// --- INTERACTIVE STORYTELLING POI 8 (The Sump-Lock) ---
+const sumpLockMarker = L.marker([35.75652862710869, -78.57890195312048], {
+    icon: L.divIcon({
+        className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6]
+    })
+}).addTo(map);
+
+const sumpLockImageUrl = "https://lh3.googleusercontent.com/d/1FQ5Fo_TfCO060ZjmqExgnf2-RM9l1pKk";
+
+const sumpLockContent = `
+    <div class="story-popup">
+        <h3>The Sump-Lock (Gate 7)</h3>
+        <img src="${sumpLockImageUrl}" alt="The Sump-Lock Control Gate">
+        <p><strong>Atmosphere:</strong> A colossal, brutalist-industrial sluice gate controlling the final catchment basin. Cold, violet-tinted mist rises from oily water, illuminated by the warm, chaotic glow of the "Sump-Lock Pub," a shanty tavern bolted to the side of the main structure.</p>
+        <p><em>"The bottleneck of the Raleigh Sector. Traders gather here, beneath the towering, rust-streaked concrete pillars, to watch the water gauges and swap stories in the shadow of the pre-collapse machinery."</em></p>
+    </div>
+`;
+sumpLockMarker.bindPopup(sumpLockContent);
 
         // Dynamic zoom-scaling function for labels
         function updateLabelSizes() {
