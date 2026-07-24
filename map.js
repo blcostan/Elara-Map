@@ -34,7 +34,7 @@ const spireMarker = L.marker(spireCenter, {
     })
 }).addTo(map);
 
-// 2. Green District Boundary Coordinates (Synchronized with Spire & Downtown borders)
+// 2. Green District Boundary Coordinates
 const greenCoords = [
     [35.757379, -78.665168], [35.756508, -78.659847], [35.754784, -78.655040],
     [35.753339, -78.651349], [35.752938, -78.649096], [35.754625, -78.642027],
@@ -103,7 +103,7 @@ const sumptownMarker = L.marker(sumptownCenter, {
     })
 }).addTo(map);
 
-// 4. Downtown District Boundary Coordinates (Adjusted to share the border with Spire District)
+// 4. Downtown District Boundary Coordinates (Aligned precisely to Spire's top corner)
 const downtownCoords = [
     [35.78094518805033, -78.65057234059867], // Starting point shared with Spire & Green
     [35.780953, -78.650566],                 
@@ -176,7 +176,8 @@ const downtownCoords = [
     [35.79568945636564, -78.64104195632657],
     [35.79368791523968, -78.64185734770652],
     [35.7893896016572, -78.64288731598992],
-    // Hugging Spire's western border instead of cutting past it:
+    [35.788716318438, -78.64303166541058],
+    // Trace down to Spire's top corner vertex and share the border cleanly:
     [35.788695, -78.651009],
     [35.778192, -78.650526],
     [35.777774, -78.650595]
