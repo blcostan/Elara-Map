@@ -61,6 +61,23 @@
             justify-content: center;
             transform: translate(-50%, -50%);
         }
+        /* Sci-Fi Label for Sumptown (Polluted Indigo/Violet - border removed) */
+        .scifi-label-sumptown {
+            background: transparent;
+            border: none;
+            color: #a855f7;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(168, 85, 247, 0.8), 0 0 20px rgba(168, 85, 247, 0.4);
+            text-transform: uppercase;
+            text-align: center;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transform: translate(-50%, -50%);
+        }
         /* Custom Interactive POI Marker Styling (Violet/magenta glow) */
         .poi-pulse-marker {
             background: #d946ef;
@@ -173,6 +190,34 @@
         const greenMarker = L.marker(adjustedGreenCenter, {
             icon: L.divIcon({
                 className: 'scifi-label-green', html: 'GREEN DISTRICT', iconSize: [0, 0]
+            })
+        }).addTo(map);
+
+        // 3. Sumptown Boundary Coordinates
+        const sumptownCoords = [
+            [35.758041, -78.6128511], [35.763285, -78.614502], [35.767011, -78.614716], [35.76978800124303, -78.61442663155198],
+            [35.77091294299305, -78.61094104465766], [35.77110445178388, -78.60377418295833], [35.77253204823744, -78.6000190907506],
+            [35.772584276890036, -78.59963285269495], [35.772584276890036, -78.59907495328122], [35.77152433755141, -78.59486462910318],
+            [35.77248455633223, -78.59179971061666], [35.77241069376073, -78.58566987364361], [35.771745927528976, -78.58390981986757],
+            [35.7695792434652, -78.58178561893632], [35.76886520964886, -78.58048075264996], [35.768003436160996, -78.5784172431739],
+            [35.767929569427544, -78.57429022422174], [35.763349697723875, -78.5745329899289], [35.75872031238746, -78.57598958485319],
+            [35.7568487822806, -78.57774963705337], [35.754583186937474, -78.58114835854339], [35.753351858065265, -78.5859429835025],
+            [35.753351858065265, -78.5899486195443], [35.75359812536392, -78.59559292487593], [35.75615926009181, -78.60093377293164],
+            [35.7735302029175, -78.60773121591167], [35.757813630108664, -78.61280594229294]
+        ];
+
+        // Render Sumptown (Polluted Indigo/Violet theme)
+        const sumptownPolygon = L.polygon(sumptownCoords, {
+            color: "#a855f7", weight: 3, dashArray: '6, 6',
+            fillColor: "#a855f7", fillOpacity: 0.12
+        }).addTo(map);
+
+        sumptownPolygon.bindPopup(`<strong>SECTOR: SUMPTOWN</strong>`);
+
+        const sumptownCenter = sumptownPolygon.getBounds().getCenter();
+        const sumptownMarker = L.marker(sumptownCenter, {
+            icon: L.divIcon({
+                className: 'scifi-label-sumptown', html: 'SUMPTOWN', iconSize: [0, 0]
             })
         }).addTo(map);
 
@@ -297,7 +342,7 @@
             if (fontSize < 8) fontSize = 8;   
             if (fontSize > 15) fontSize = 15; 
 
-            const elements = document.querySelectorAll('.scifi-label-spire, .scifi-label-green');
+            const elements = document.querySelectorAll('.scifi-label-spire, .scifi-label-green, .scifi-label-sumptown');
             elements.forEach(el => {
                 el.style.fontSize = fontSize + 'px';
                 el.style.padding = '0px';
