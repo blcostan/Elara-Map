@@ -372,6 +372,19 @@ roseGardensMarker.bindPopup(`
         <p><em>"Walking past the glowing petals under the smog-filtered sky, the corporate elite enjoy a synthetic masterpiece of nature that pulses with quiet, engineered life."</em></p>
     </div>
 `);
+// --- POI 13 (Five Points Bar District) ---
+const fivePointsMarker = L.marker([35.804140, -78.645885], {
+    icon: L.divIcon({ className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6] })
+}).addTo(map);
+const fivePointsImageUrl = "https://lh3.googleusercontent.com/d/1eaREGou9UBO9hBs8tJ74710nQKeJ7vHL";
+fivePointsMarker.bindPopup(`
+    <div class="story-popup">
+        <h3>Five Points Bar District</h3>
+        <img src="${fivePointsImageUrl}" alt="Five Points Bar District">
+        <p><strong>Atmosphere:</strong> A vibrant, chaotic anomaly within the city where every walk of life—from outer sector scrappers to the occasional corporate elite—mingles to drink. Tucked deep inside is The Alley Bar, where Elara witnesses a chilling sight: a man in the throes of a grotesque, unnatural transformation.</p>
+        <p><em>"Neon signs flicker through the damp night air, casting a deceptive warmth over a district where danger lurks in the shadows of every alleyway."</em></p>
+    </div>
+`);
 
 // Dynamic zoom-scaling function for labels
 function updateLabelSizes() {
