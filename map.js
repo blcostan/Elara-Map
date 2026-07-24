@@ -106,8 +106,7 @@ const sumptownMarker = L.marker(sumptownCenter, {
 // 4. Downtown District Boundary Coordinates
 const downtownCoords = [
     [35.777774, -78.650595], // Starting intersection point with Spire and Green
-    [35.774372, -78.655836], // Moving west along the shared Green District border
-    // Add additional western/northern downtown boundary points here as we trace it
+    [35.774372, -78.655836]  // Moving west along the shared Green District border
 ];
 
 // Render Downtown District (Amber/Gold theme for urban core)
@@ -272,7 +271,7 @@ function updateLabelSizes() {
     if (fontSize < 8) fontSize = 8;    
     if (fontSize > 15) fontSize = 15; 
 
-    const elements = document.querySelectorAll('.scifi-label-spire, .scifi-label-green, .scifi-label-sumptown');
+    const elements = document.querySelectorAll('.scifi-label-spire, .scifi-label-green, .scifi-label-sumptown, .scifi-label-downtown');
     elements.forEach(el => {
         el.style.fontSize = fontSize + 'px';
         el.style.padding = '0px';
