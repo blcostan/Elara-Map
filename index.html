@@ -193,12 +193,13 @@
             })
         }).addTo(map);
 
-        // 3. Sumptown Boundary Coordinates: Exact match to Spire's eastern border down to MLK Blvd, then turning East
+        // 3. Sumptown Boundary Coordinates: Starts south along Spire's eastern border, goes UP north to MLK Jr Blvd, then heads East along MLK Blvd and Poole Rd
         const sumptownCoords = [
-            // Exact Spire Eastern Border segment (top to bottom down to MLK intersection)
-            [35.769760, -78.614413],
-            [35.757857, -78.612825],
-            // Turning right along MLK Blvd / lower boundary path
+            // Start at southern point on Spire's eastern border
+            [35.75780993474421, -78.61280301624038],
+            // Move North hugging Spire's eastern border up to MLK Jr Blvd intersection
+            [35.76981382377968, -78.61443431358302],
+            // Turn right/east along MLK Blvd
             [35.77076589778483, -78.61172373176922],
             [35.7710096366165, -78.61075813663008],
             [35.771061866268965, -78.60818321625906],
@@ -208,7 +209,7 @@
             [35.772054223151194, -78.6011880150208],
             [35.7722718436183, -78.60065157327683],
             [35.77261133035784, -78.59906370571471],
-            // Turning right onto Poole Rd
+            // Turn right onto Poole Rd
             [35.77235018684068, -78.59799082222679],
             [35.77182789723571, -78.59616691936726],
             [35.77148840715171, -78.59451467879587],
@@ -222,8 +223,11 @@
             [35.768424533432345, -78.57949480207363],
             [35.76787585863594, -78.57690476429848],
             [35.76790691580093, -78.5742381736827],
-            // South/bottom closing segment back toward Spire's lower-right edge
-            [35.753120, -78.623897]
+            // Outer eastern boundary sweeping back down and west
+            [35.753351858065265, -78.5859429835025],
+            [35.753120, -78.623897],
+            // Close back to start point
+            [35.75780993474421, -78.61280301624038]
         ];
 
         // Render Sumptown (Polluted Indigo/Violet theme)
