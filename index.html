@@ -193,7 +193,7 @@
             })
         }).addTo(map);
 
-        // 3. Sumptown Boundary Coordinates (Spire eastern border -> MLK Blvd -> Poole Rd)
+        // 3. Sumptown Boundary Coordinates (Spire eastern border -> MLK Blvd -> Poole Rd -> current end point)
         const sumptownCoords = [
             // Starting point hugging Spire's eastern border
             [35.75781968737243, -78.61280699773778],
@@ -225,7 +225,7 @@
             [35.768424533432345, -78.57949480207363],
             [35.76787585863594, -78.57690476429848],
             [35.76790691580093, -78.5742381736827],
-            // Closing back down to the start vertex
+            // Temporary closing point back to start for testing
             [35.75781968737243, -78.61280699773778]
         ];
 
@@ -377,4 +377,3 @@
     </script>
 </body>
 </html>
-```eof
