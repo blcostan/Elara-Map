@@ -359,6 +359,19 @@ fortMordecaiMarker.bindPopup(`
         <p><em>"Lush, manicured greenery and high-security seclusion just a stone's throw from the vertical corporate sprawl."</em></p>
     </div>
 `);
+// --- POI 12 (The Rose Gardens) ---
+const roseGardensMarker = L.marker([35.7925, -78.6575], {
+    icon: L.divIcon({ className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6] })
+}).addTo(map);
+const roseGardensImageUrl = "https://lh3.googleusercontent.com/d/1X48VJsgGYVnag77RDbmN1y6xX0lqqA15";
+roseGardensMarker.bindPopup(`
+    <div class="story-popup">
+        <h3>The Rose Gardens</h3>
+        <img src="${roseGardensImageUrl}" alt="The Rose Gardens">
+        <p><strong>Atmosphere:</strong> A breathtaking sanctuary nestled within the Downtown District. Engineered with subtle bio-luminescent traits, these meticulously curated blossoms emit a faint, ethereal glow against the evening shadows of the urban core.</p>
+        <p><em>"Walking past the glowing petals under the smog-filtered sky, the corporate elite enjoy a synthetic masterpiece of nature that pulses with quiet, engineered life."</em></p>
+    </div>
+`);
 
 // Dynamic zoom-scaling function for labels
 function updateLabelSizes() {
