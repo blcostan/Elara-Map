@@ -1,0 +1,103 @@
+    <style>
+        #map {
+            height: 100vh;
+            width: 100%;
+            background-color: #0b0f19;
+        }
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+        /* Dark Matter tiles with high-contrast white roads */
+        .leaflet-tile-pane {
+            filter: brightness(180%) contrast(150%);
+        }
+        /* Sci-Fi Label for Spire District (Cyan) */
+        .scifi-label-spire {
+            background: transparent;
+            border: none;
+            color: #00f0ff;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.8), 0 0 20px rgba(0, 240, 255, 0.4);
+            text-transform: uppercase;
+            text-align: center;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transform: translate(-50%, -50%);
+        }
+        /* Sci-Fi Label for Green District (Neon Green) */
+        .scifi-label-green {
+            background: transparent;
+            border: none;
+            color: #28a745;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(40, 167, 69, 0.8), 0 0 20px rgba(40, 167, 69, 0.4);
+            text-transform: uppercase;
+            text-align: center;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transform: translate(-50%, -50%);
+        }
+        /* Sci-Fi Label for Sumptown (Polluted Indigo/Violet) */
+        .scifi-label-sumptown {
+            background: transparent;
+            border: none;
+            color: #a855f7;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(168, 85, 247, 0.8), 0 0 20px rgba(168, 85, 247, 0.4);
+            text-transform: uppercase;
+            text-align: center;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transform: translate(-50%, -50%);
+        }
+        /* Custom Interactive POI Marker Styling (Violet/magenta glow) */
+        .poi-pulse-marker {
+            background: #d946ef;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #d946ef, 0 0 20px #d946ef;
+            cursor: pointer;
+        }
+        /* Popup Theme Customization */
+        .leaflet-popup-content-wrapper, .leaflet-popup-tip {
+            background: #0b0f19;
+            color: #00f0ff;
+            border: 1px solid #d946ef;
+            font-family: 'Orbitron', sans-serif;
+        }
+        .story-popup {
+            max-width: 280px;
+            font-size: 11px;
+            line-height: 1.4;
+            color: #c0d0e0;
+        }
+        .story-popup h3 {
+            color: #d946ef;
+            margin: 0 0 8px 0;
+            font-size: 13px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .story-popup img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            border: 1px solid #d946ef;
+            margin-bottom: 8px;
+            background-color: #1a1e2a;
+        }
+    </style>
