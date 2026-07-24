@@ -297,6 +297,8 @@ const kikiHomeContent = `
         <p><em>"Where the past lingers in the rust and damp air—a fragile shelter before the foster system took her away."</em></p>
     </div>
 `;
+kikiHomeMarker.bindPopup(kikiHomeContent);
+
 // --- INTERACTIVE STORYTELLING POI 10 (The Glass Horizon) ---
 const glassHorizonMarker = L.marker([35.802851849003794, -78.62542927249596], {
     icon: L.divIcon({
@@ -315,7 +317,6 @@ const glassHorizonContent = `
     </div>
 `;
 glassHorizonMarker.bindPopup(glassHorizonContent);
-kikiHomeMarker.bindPopup(kikiHomeContent);
 
         // Dynamic zoom-scaling function for labels
         function updateLabelSizes() {
