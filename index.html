@@ -196,14 +196,13 @@
         cloudPlazaMarker.bindPopup(plazaContent);
 
         // --- INTERACTIVE STORYTELLING POI 2 (The Aetherium) ---
-        // Placed near the top end of the Spire District
-        const aetheriumMarker = L.marker([35.795, -78.620], {
+        // Moved southwest within the inner bounds of the Spire District
+        const aetheriumMarker = L.marker([35.765, -78.640], {
             icon: L.divIcon({
                 className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6]
             })
         }).addTo(map);
 
-        // Correct direct link for The Aetherium image
         const aetheriumImageUrl = "https://lh3.googleusercontent.com/d/1DqQCWTxOn2YxdQCAl9ccXtAYvhtQNkaI";
 
         const aetheriumContent = `
