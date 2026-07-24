@@ -193,11 +193,11 @@
             })
         }).addTo(map);
 
-        // 3. Sumptown Boundary Coordinates: Starts south along Spire's eastern border, goes UP north to MLK Jr Blvd, then heads East along MLK Blvd and Poole Rd
+        // 3. Sumptown Boundary Coordinates (Complete full loop: Spire border up to MLK -> MLK East -> Poole Rd -> 440 South & West)
         const sumptownCoords = [
-            // Start at southern point on Spire's eastern border
+            // Start at bottom of Spire's eastern border
             [35.75780993474421, -78.61280301624038],
-            // Move North hugging Spire's eastern border up to MLK Jr Blvd intersection
+            // Go UP north hugging Spire's eastern border to MLK Jr Blvd
             [35.76981382377968, -78.61443431358302],
             // Turn right/east along MLK Blvd
             [35.77076589778483, -78.61172373176922],
@@ -223,11 +223,17 @@
             [35.768424533432345, -78.57949480207363],
             [35.76787585863594, -78.57690476429848],
             [35.76790691580093, -78.5742381736827],
-            // Outer eastern boundary sweeping back down and west
-            [35.753351858065265, -78.5859429835025],
-            [35.753120, -78.623897],
-            // Close back to start point
-            [35.75780993474421, -78.61280301624038]
+            // Head South on 440
+            [35.7679089212448, -78.57417198368348],
+            [35.761888550283054, -78.5747030339163],
+            [35.75830925788647, -78.57659671392976],
+            [35.75339873349045, -78.58878467035257],
+            // Head West on 440 to I-40
+            [35.75334711169578, -78.59122349178183],
+            [35.754506782725905, -78.59818980028047],
+            [35.757547368962925, -78.60660214172542],
+            [35.75752937590674, -78.60658119192838],
+            [35.75780798086611, -78.61280391615834]
         ];
 
         // Render Sumptown (Polluted Indigo/Violet theme)
