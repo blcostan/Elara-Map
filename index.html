@@ -182,7 +182,7 @@
             fillColor: "#28a745", fillOpacity: 0.12
         }).addTo(map);
 
-        greenPolygon.bindPopup(`<strong>SECTOR: GREEN DISTRICT</strong>`);
+v        greenPolygon.bindPopup(`<strong>SECTOR: GREEN DISTRICT</strong>`);
 
         const greenCenter = greenPolygon.getBounds().getCenter();
         const adjustedGreenCenter = [greenCenter.lat - 0.008, greenCenter.lng + 0.0];
@@ -193,32 +193,22 @@
             })
         }).addTo(map);
 
-        // 3. Sumptown Boundary Coordinates (sharing Spire's exact eastern border points and aligning with I-440 south)
+        // 3. Sumptown Initial Western Border Segment (hugging Spire's eastern border exactly)
         const sumptownCoords = [
-            // Exact shared eastern border points of the Spire District
-            [35.792937, -78.612899],
-            [35.769760, -78.614413],
-            [35.757857, -78.612825],
-            // Following I-440 south-eastward as indicated by the red line corrections
-            [35.753120, -78.623897],
-            [35.748500, -78.618000],
-            [35.744200, -78.605000],
-            [35.743800, -78.595000],
-            // East side boundary continuing around
-            [35.753351, -78.585943],
-            [35.767930, -78.574290],
-            [35.771746, -78.583910],
-            [35.772532, -78.600019],
-            [35.770913, -78.610941]
+            [35.75781968737243, -78.61280699773778],
+            [35.764227331237606, -78.61482401869506],
+            [35.76718720983446, -78.61465235733701],
+            [35.768963084124536, -78.61420174627209],
+            [35.76976395571589, -78.61433049228121]
         ];
 
-        // Render Sumptown (Polluted Indigo/Violet theme)
+        // Render Sumptown segment (Polluted Indigo/Violet theme)
         const sumptownPolygon = L.polygon(sumptownCoords, {
             color: "#a855f7", weight: 3, dashArray: '6, 6',
             fillColor: "#a855f7", fillOpacity: 0.12
         }).addTo(map);
 
-        sumptownPolygon.bindPopup(`<strong>SECTOR: SUMPTOWN</strong>`);
+        sumptownPolygon.bindPopup(`<strong>SECTOR: SUMPTOWN (Drafting Western Border)</strong>`);
 
         const sumptownCenter = sumptownPolygon.getBounds().getCenter();
         const sumptownMarker = L.marker(sumptownCenter, {
