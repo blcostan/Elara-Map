@@ -27,15 +27,15 @@
         .leaflet-tile-pane {
             filter: brightness(180%) contrast(150%);
         }
-        /* Sci-Fi Label for Spire District (Cyan) */
+        /* Sci-Fi Label for Spire District (Cyan - border removed) */
         .scifi-label-spire {
-            background: rgba(0, 240, 255, 0.15);
-            border: 1px solid #00f0ff;
+            background: transparent;
+            border: none;
             color: #00f0ff;
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
             letter-spacing: 2px;
-            box-shadow: 0 0 15px rgba(0, 240, 255, 0.4);
+            text-shadow: 0 0 10px rgba(0, 240, 255, 0.8), 0 0 20px rgba(0, 240, 255, 0.4);
             text-transform: uppercase;
             text-align: center;
             white-space: nowrap;
@@ -44,15 +44,15 @@
             justify-content: center;
             transform: translate(-50%, -50%);
         }
-        /* Sci-Fi Label for Green District (Neon Green) */
+        /* Sci-Fi Label for Green District (Neon Green - border removed) */
         .scifi-label-green {
-            background: rgba(40, 167, 69, 0.15);
-            border: 1px solid #28a745;
+            background: transparent;
+            border: none;
             color: #28a745;
             font-family: 'Orbitron', sans-serif;
             font-weight: 700;
             letter-spacing: 2px;
-            box-shadow: 0 0 15px rgba(40, 167, 69, 0.4);
+            text-shadow: 0 0 10px rgba(40, 167, 69, 0.8), 0 0 20px rgba(40, 167, 69, 0.4);
             text-transform: uppercase;
             text-align: center;
             white-space: nowrap;
@@ -61,19 +61,19 @@
             justify-content: center;
             transform: translate(-50%, -50%);
         }
-        /* Custom Interactive POI Marker Styling */
+        /* Custom Interactive POI Marker Styling (Updated to violet/magenta glow) */
         .poi-pulse-marker {
-            background: #ff00ff;
+            background: #d946ef;
             border: 2px solid #ffffff;
             border-radius: 50%;
-            box-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff;
+            box-shadow: 0 0 10px #d946ef, 0 0 20px #d946ef;
             cursor: pointer;
         }
         /* Popup Theme Customization */
         .leaflet-popup-content-wrapper, .leaflet-popup-tip {
             background: #0b0f19;
             color: #00f0ff;
-            border: 1px solid #00f0ff;
+            border: 1px solid #d946ef;
             font-family: 'Orbitron', sans-serif;
         }
         .story-popup {
@@ -83,7 +83,7 @@
             color: #c0d0e0;
         }
         .story-popup h3 {
-            color: #ff00ff;
+            color: #d946ef;
             margin: 0 0 8px 0;
             font-size: 13px;
             letter-spacing: 1px;
@@ -93,7 +93,7 @@
             width: 100%;
             height: 180px;
             object-fit: cover;
-            border: 1px solid #ff00ff;
+            border: 1px solid #d946ef;
             margin-bottom: 8px;
             background-color: #1a1e2a;
         }
@@ -183,7 +183,6 @@
             })
         }).addTo(map);
 
-        // Your fixed Google Drive direct link
         const plazaImageUrl = "https://lh3.googleusercontent.com/d/1NuJHvWA7OAOvuuVykhITMF09OhzfJYXp";
 
         const plazaContent = `
@@ -206,7 +205,7 @@
             const elements = document.querySelectorAll('.scifi-label-spire, .scifi-label-green');
             elements.forEach(el => {
                 el.style.fontSize = fontSize + 'px';
-                el.style.padding = (fontSize * 0.4) + 'px ' + (fontSize * 0.9) + 'px';
+                el.style.padding = '0px';
             });
         }
 
