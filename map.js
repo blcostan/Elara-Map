@@ -10,7 +10,7 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png'
     attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
 }).addTo(map);
 
-// 1. Spire District Boundary Coordinates (Left untouched / correct)
+// 1. Spire District Boundary Coordinates
 const spireCoords = [
     [35.804623, -78.623870], [35.792988, -78.624918], [35.792937, -78.612899],
     [35.769760, -78.614413], [35.757857, -78.612825], [35.753120, -78.623897],
@@ -34,7 +34,7 @@ const spireMarker = L.marker(spireCenter, {
     })
 }).addTo(map);
 
-// 2. Green District Boundary Coordinates (Correct as is)
+// 2. Green District Boundary Coordinates
 const greenCoords = [
     [35.757379, -78.665168], [35.756508, -78.659847], [35.754784, -78.655040],
     [35.753339, -78.651349], [35.752938, -78.649096], [35.754625, -78.642027],
@@ -104,12 +104,29 @@ const sumptownMarker = L.marker(sumptownCenter, {
     })
 }).addTo(map);
 
-// 4. Downtown District Boundary Coordinates (Full shape intact, but trimmed back from dipping south between Green and Spire)
+// 4. Downtown District Boundary Coordinates (Using your exact original coordinates)
 const downtownCoords = [
-    [35.780953, -78.650566], // Connects cleanly to the top of the Green/Spire border line without dipping further south
+    [35.78094518805033, -78.65057234059867],
+    [35.780953, -78.650566],                 
     [35.781101, -78.652045],
     [35.782196, -78.654488],
     [35.782701, -78.655254],
+    [35.783673, -78.656665],
+    [35.784381, -78.658311],
+    [35.785345, -78.660508],
+    [35.786128, -78.662385],
+    [35.787863, -78.668862],
+    [35.788682, -78.672191],
+    [35.78950736145439, -78.67592941986129],
+    [35.79128143315624, -78.67581007024339],
+    [35.79344752581452, -78.6757038601968],
+    [35.794222874176995, -78.67579489737957],
+    [35.79525666022489, -78.67590110742614],
+    [35.79638888665428, -78.67621973756583],
+    [35.79689346068792, -78.67637146615867],
+    [35.797865679550206, -78.67670526916216],
+    [35.7992070759173, -78.67646250334144],
+    [35.80005620503034, -78.67623491038452],
     [35.80105299728193, -78.67614387308156],
     [35.80103415170096, -78.67344813082701],
     [35.80093645921858, -78.67202017677961],
