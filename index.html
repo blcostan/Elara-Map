@@ -193,15 +193,12 @@
             })
         }).addTo(map);
 
-        // 3. Sumptown Boundary Coordinates (Spire eastern border -> MLK Blvd -> Poole Rd -> current end point)
+        // 3. Sumptown Boundary Coordinates: Exact match to Spire's eastern border down to MLK Blvd, then turning East
         const sumptownCoords = [
-            // Starting point hugging Spire's eastern border
-            [35.75781968737243, -78.61280699773778],
-            [35.764227331237606, -78.61482401869506],
-            [35.76718720983446, -78.61465235733701],
-            [35.768963084124536, -78.61420174627209],
-            [35.76976395571589, -78.61433049228121],
-            // Turning right along MLK Blvd
+            // Exact Spire Eastern Border segment (top to bottom down to MLK intersection)
+            [35.769760, -78.614413],
+            [35.757857, -78.612825],
+            // Turning right along MLK Blvd / lower boundary path
             [35.77076589778483, -78.61172373176922],
             [35.7710096366165, -78.61075813663008],
             [35.771061866268965, -78.60818321625906],
@@ -225,8 +222,8 @@
             [35.768424533432345, -78.57949480207363],
             [35.76787585863594, -78.57690476429848],
             [35.76790691580093, -78.5742381736827],
-            // Temporary closing point back to start for testing
-            [35.75781968737243, -78.61280699773778]
+            // South/bottom closing segment back toward Spire's lower-right edge
+            [35.753120, -78.623897]
         ];
 
         // Render Sumptown (Polluted Indigo/Violet theme)
