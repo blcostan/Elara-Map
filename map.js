@@ -10,7 +10,7 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png'
     attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
 }).addTo(map);
 
-// 1. Spire District Boundary Coordinates (Restored original western boundary to protect Green District)
+// 1. Spire District Boundary Coordinates
 const spireCoords = [
     [35.804623, -78.623870], [35.792988, -78.624918], [35.792937, -78.612899],
     [35.769760, -78.614413], [35.757857, -78.612825], [35.753120, -78.623897],
@@ -34,7 +34,7 @@ const spireMarker = L.marker(spireCenter, {
     })
 }).addTo(map);
 
-// 2. Green District Boundary Coordinates
+// 2. Green District Boundary Coordinates (Synchronized with Spire & Downtown borders)
 const greenCoords = [
     [35.757379, -78.665168], [35.756508, -78.659847], [35.754784, -78.655040],
     [35.753339, -78.651349], [35.752938, -78.649096], [35.754625, -78.642027],
