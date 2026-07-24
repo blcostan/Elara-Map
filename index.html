@@ -176,7 +176,7 @@
             })
         }).addTo(map);
 
-        // --- INTERACTIVE STORYTELLING POI (Cloud Plaza) ---
+        // --- INTERACTIVE STORYTELLING POI 1 (Cloud Plaza) ---
         const cloudPlazaMarker = L.marker([35.778, -78.630], {
             icon: L.divIcon({
                 className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6]
@@ -194,6 +194,27 @@
             </div>
         `;
         cloudPlazaMarker.bindPopup(plazaContent);
+
+        // --- INTERACTIVE STORYTELLING POI 2 (The Aetherium) ---
+        // Placed near the top end of the Spire District
+        const aetheriumMarker = L.marker([35.795, -78.620], {
+            icon: L.divIcon({
+                className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6]
+            })
+        }).addTo(map);
+
+        // Correct direct link for The Aetherium image
+        const aetheriumImageUrl = "https://lh3.googleusercontent.com/d/1DqQCWTxOn2YxdQCAl9ccXtAYvhtQNkaI";
+
+        const aetheriumContent = `
+            <div class="story-popup">
+                <h3>The Aetherium</h3>
+                <img src="${aetheriumImageUrl}" alt="The Aetherium Restaurant">
+                <p><strong>Description:</strong> The most exclusive dining experience in the Raleigh Sector. Suspended high within an obsidian-glass spire, this ultra-luxury establishment serves the corporate elite.</p>
+                <p><em>"Where deals are sealed and destinies are decided over synthetic delicacies, far above the common streets."</em></p>
+            </div>
+        `;
+        aetheriumMarker.bindPopup(aetheriumContent);
 
         // Dynamic zoom-scaling function for labels
         function updateLabelSizes() {
