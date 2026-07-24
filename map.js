@@ -103,6 +103,28 @@ const sumptownMarker = L.marker(sumptownCenter, {
     })
 }).addTo(map);
 
+// 4. Downtown District Boundary Coordinates
+const downtownCoords = [
+    [35.777774, -78.650595], // Starting intersection point with Spire and Green
+    [35.774372, -78.655836], // Moving west along the shared Green District border
+    // Add additional western/northern downtown boundary points here as we trace it
+];
+
+// Render Downtown District (Amber/Gold theme for urban core)
+const downtownPolygon = L.polygon(downtownCoords, {
+    color: "#f59e0b", weight: 3, dashArray: '6, 6',
+    fillColor: "#f59e0b", fillOpacity: 0.12
+}).addTo(map);
+
+downtownPolygon.bindPopup(`<strong>SECTOR: DOWNTOWN DISTRICT</strong>`);
+
+const downtownCenter = downtownPolygon.getBounds().getCenter();
+const downtownMarker = L.marker(downtownCenter, {
+    icon: L.divIcon({
+        className: 'scifi-label-downtown', html: 'DOWNTOWN', iconSize: [0, 0]
+    })
+}).addTo(map);
+
 // --- POI 1 (Cloud Plaza) ---
 const cloudPlazaMarker = L.marker([35.778, -78.630], {
     icon: L.divIcon({ className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6] })
