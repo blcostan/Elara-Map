@@ -1,5 +1,4 @@
-    
-        #map {
+#map {
             height: 100vh;
             width: 100%;
             background-color: #0b0f19;
@@ -64,6 +63,23 @@
             justify-content: center;
             transform: translate(-50%, -50%);
         }
+        /* Sci-Fi Label for Downtown District (Amber/Gold) */
+        .scifi-label-downtown {
+            background: transparent;
+            border: none;
+            color: #f59e0b;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(245, 158, 11, 0.8), 0 0 20px rgba(245, 158, 11, 0.4);
+            text-transform: uppercase;
+            text-align: center;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transform: translate(-50%, -50%);
+        }
         /* Custom Interactive POI Marker Styling (Violet/magenta glow) */
         .poi-pulse-marker {
             background: #d946ef;
@@ -100,4 +116,3 @@
             margin-bottom: 8px;
             background-color: #1a1e2a;
         }
-    
