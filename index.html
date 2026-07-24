@@ -61,7 +61,7 @@
             justify-content: center;
             transform: translate(-50%, -50%);
         }
-        /* Custom Interactive POI Marker Styling (Updated to violet/magenta glow) */
+        /* Custom Interactive POI Marker Styling (Violet/magenta glow) */
         .poi-pulse-marker {
             background: #d946ef;
             border: 2px solid #ffffff;
@@ -196,7 +196,6 @@
         cloudPlazaMarker.bindPopup(plazaContent);
 
         // --- INTERACTIVE STORYTELLING POI 2 (The Aetherium) ---
-        // Moved southwest within the inner bounds of the Spire District
         const aetheriumMarker = L.marker([35.765, -78.640], {
             icon: L.divIcon({
                 className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6]
@@ -214,6 +213,25 @@
             </div>
         `;
         aetheriumMarker.bindPopup(aetheriumContent);
+
+        // --- INTERACTIVE STORYTELLING POI 3 (Ashby Library) ---
+        const ashbyLibraryMarker = L.marker([35.769317805556604, -78.6764427497249], {
+            icon: L.divIcon({
+                className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6]
+            })
+        }).addTo(map);
+
+        const ashbyLibraryImageUrl = "https://lh3.googleusercontent.com/d/1zqAedRg2aIA6oE4_p_85iPUQsQC9pdBv";
+
+        const ashbyLibraryContent = `
+            <div class="story-popup">
+                <h3>Ashby Library</h3>
+                <img src="${ashbyLibraryImageUrl}" alt="Ashby Library">
+                <p><strong>Description:</strong> A foundational cornerstone of the university campus within the Green District. This towering repository of historic archives, digital data feeds, and quiet study atriums stands surrounded by dense campus flora, preserving knowledge away from the sterile corporate sprawl.</p>
+                <p><em>"Within these walls, the history of the old world meets the quiet resistance of academic preservation."</em></p>
+            </div>
+        `;
+        ashbyLibraryMarker.bindPopup(ashbyLibraryContent);
 
         // Dynamic zoom-scaling function for labels
         function updateLabelSizes() {
