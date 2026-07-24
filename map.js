@@ -297,6 +297,24 @@ const kikiHomeContent = `
         <p><em>"Where the past lingers in the rust and damp air—a fragile shelter before the foster system took her away."</em></p>
     </div>
 `;
+// --- INTERACTIVE STORYTELLING POI 10 (The Glass Horizon) ---
+const glassHorizonMarker = L.marker([35.802851849003794, -78.62542927249596], {
+    icon: L.divIcon({
+        className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6]
+    })
+}).addTo(map);
+
+const glassHorizonImageUrl = "https://lh3.googleusercontent.com/d/1u4eV2sXGMvDANTwqm_tOmQU8EPgsgvb0";
+
+const glassHorizonContent = `
+    <div class="story-popup">
+        <h3>The Glass Horizon</h3>
+        <img src="${glassHorizonImageUrl}" alt="The Glass Horizon Gate">
+        <p><strong>Atmosphere:</strong> A towering, heavily fortified security perimeter and shimmering energy barrier sealing off the Spire District from the rest of Raleigh. Guarded by corporate enforcers and automated surveillance drones.</p>
+        <p><em>"The ultimate divider between the sterile corporate luxury above and the struggles of the outer sectors below."</em></p>
+    </div>
+`;
+glassHorizonMarker.bindPopup(glassHorizonContent);
 kikiHomeMarker.bindPopup(kikiHomeContent);
 
         // Dynamic zoom-scaling function for labels
