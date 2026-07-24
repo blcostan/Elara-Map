@@ -398,6 +398,19 @@ foundryMainMarker.bindPopup(`
         <p><em>"Within the shadowed sanctuary, a colossal statue of a Titan reaches out its massive stone hand, cradling a pulsing bio-luminescent sphere that bathes the devout in an ethereal, shifting glow."</em></p>
     </div>
 `);
+// --- POI 15 (Elysia Corporate Headquarters) ---
+const elysiaHqMarker = L.marker([35.77670560229435, -78.63882962888806], {
+    icon: L.divIcon({ className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6] })
+}).addTo(map);
+const elysiaHqImageUrl = "https://lh3.googleusercontent.com/d/11yoxIaCYJXBDAOptyShtXW4DXK4D5W9Y";
+elysiaHqMarker.bindPopup(`
+    <div class="story-popup">
+        <h3>Elysia Corporate Headquarters (Southeast Division)</h3>
+        <img src="${elysiaHqImageUrl}" alt="Elysia Corporate Headquarters">
+        <p><strong>Atmosphere:</strong> A towering, sleek monolith of mirrored glass and gleaming steel standing proudly in the Downtown District. As the regional nerve center for the long-standing corporate titan, this tower oversees the distribution of their flagship, highly sought-after euphoric drug—known simply as <em>Elysia</em>—which temporarily grants superhuman strength and profound mood boosts to those who can afford it.</p>
+        <p><em>"From glass-walled executive suites high above the streets, executives manage an empire built on artificial joy and fleeting, synthetic power."</em></p>
+    </div>
+`);
 
 // Dynamic zoom-scaling function for labels
 function updateLabelSizes() {
