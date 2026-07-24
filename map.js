@@ -106,6 +106,8 @@ const sumptownMarker = L.marker(sumptownCenter, {
 // 4. Downtown District Boundary Coordinates
 const downtownCoords = [
     [35.78094518805033, -78.65057234059867], // Starting point shared with Spire & Green
+    [35.780953, -78.650566],                 
+    [35.781101, -78.652045],
     [35.782196, -78.654488],
     [35.782701, -78.655254],
     [35.783673, -78.656665],
@@ -125,7 +127,7 @@ const downtownCoords = [
     [35.797865679550206, -78.67670526916216],
     [35.7992070759173, -78.67646250334144],
     [35.80005620503034, -78.67623491038452],
-    [35.80105299728193, -78.67614387308156]  // Stopping point for now
+    [35.80105299728193, -78.67614387308156]
 ];
 
 // Render Downtown District (Amber/Gold theme for urban core)
