@@ -10,21 +10,13 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png'
     attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
 }).addTo(map);
 
-// 1. Spire District Boundary Coordinates (Updated to share western border with Downtown)
+// 1. Spire District Boundary Coordinates (Restored original western boundary to protect Green District)
 const spireCoords = [
-    [35.804623, -78.623870], 
-    [35.792988, -78.624918], 
-    [35.792937, -78.612899],
-    [35.769760, -78.614413], 
-    [35.757857, -78.612825], 
-    [35.753120, -78.623897],
-    [35.754583, -78.638917], 
-    [35.754625, -78.642027], 
-    [35.770438, -78.648150],
-    [35.78094518805033, -78.65057234059867], // Shared northern meeting point with Downtown & Green
-    [35.788716318438, -78.64303166541058],  // Shared border edge with Downtown
-    [35.788580, -78.643067], 
-    [35.804518, -78.623968]
+    [35.804623, -78.623870], [35.792988, -78.624918], [35.792937, -78.612899],
+    [35.769760, -78.614413], [35.757857, -78.612825], [35.753120, -78.623897],
+    [35.754583, -78.638917], [35.754625, -78.642027], [35.770438, -78.648150],
+    [35.774372, -78.655836], [35.777774, -78.650595], [35.778192, -78.650526],
+    [35.788695, -78.651009], [35.788580, -78.643067], [35.804518, -78.623968]
 ];
 
 // Render Spire District (Cyan theme)
