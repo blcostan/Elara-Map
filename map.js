@@ -385,6 +385,19 @@ fivePointsMarker.bindPopup(`
         <p><em>"Neon signs flicker through the damp night air, casting a deceptive warmth over a district where danger lurks in the shadows of every alleyway."</em></p>
     </div>
 `);
+// --- POI 14 (Foundry of Origins - Main Cathedral) ---
+const foundryMainMarker = L.marker([35.80028721396566, -78.67582514547222], {
+    icon: L.divIcon({ className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6] })
+}).addTo(map);
+const foundryMainImageUrl = "https://lh3.googleusercontent.com/d/1viGg1UA5lk16b_8NSwNY6hZoawtg2Rk7";
+foundryMainMarker.bindPopup(`
+    <div class="story-popup">
+        <h3>Foundry of Origins (Main Cathedral)</h3>
+        <img src="${foundryMainImageUrl}" alt="Foundry of Origins Main Cathedral">
+        <p><strong>Atmosphere:</strong> The monumental epicenter of the dominant faith in the world, located in the western sector of Downtown. Here, silent monks tend to the ancient worship of the primordial Titans, safeguarding sacred rites beneath vaulted stone and towering arches.</p>
+        <p><em>"Within the shadowed sanctuary, a colossal statue of a Titan reaches out its massive stone hand, cradling a pulsing bio-luminescent sphere that bathes the devout in an ethereal, shifting glow."</em></p>
+    </div>
+`);
 
 // Dynamic zoom-scaling function for labels
 function updateLabelSizes() {
