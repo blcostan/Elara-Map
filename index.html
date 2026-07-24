@@ -271,6 +271,25 @@
         `;
         belltowerMarker.bindPopup(belltowerContent);
 
+        // --- INTERACTIVE STORYTELLING POI 6 (Jax's Lab) ---
+        const jaxLabMarker = L.marker([35.787401971966204, -78.67419610066574], {
+            icon: L.divIcon({
+                className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6]
+            })
+        }).addTo(map);
+
+        const jaxLabImageUrl = "https://lh3.googleusercontent.com/d/1NSXjnIKWJ73t_DOrIi5IbkaREE7r-Y3f";
+
+        const jaxLabContent = `
+            <div class="story-popup">
+                <h3>Jax's Lab</h3>
+                <img src="${jaxLabImageUrl}" alt="Jax's Lab">
+                <p><strong>Description:</strong> Tucked away within the academic sector, Jax's workspace hums with custom monitors, specialized research equipment, and focused studies on bivalve genetics and genetic disorders.</p>
+                <p><em>"Screens glow against the dim room, charting delicate biological data streams and intricate genomic sequences late into the night."</em></p>
+            </div>
+        `;
+        jaxLabMarker.bindPopup(jaxLabContent);
+
         // Dynamic zoom-scaling function for labels
         function updateLabelSizes() {
             const zoom = map.getZoom();
