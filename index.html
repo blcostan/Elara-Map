@@ -406,6 +406,25 @@ const sumpLockContent = `
 `;
 sumpLockMarker.bindPopup(sumpLockContent);
 
+// --- INTERACTIVE STORYTELLING POI 9 (KiKi's Childhood Home) ---
+const kikiHomeMarker = L.marker([35.76526751892501, -78.59848199754718], {
+    icon: L.divIcon({
+        className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6]
+    })
+}).addTo(map);
+
+const kikiHomeImageUrl = "https://lh3.googleusercontent.com/d/1fXo2qZ-jBoyB-DklFHsZt2Sx8CNlAp52";
+
+const kikiHomeContent = `
+    <div class="story-popup">
+        <h3>KiKi's Childhood Shanty</h3>
+        <img src="${kikiHomeImageUrl}" alt="KiKi's Childhood Home">
+        <p><strong>Atmosphere:</strong> A cramped, weather-beaten dwelling retrofitted into a rusted shipping container, wedged against a massive concrete drainage pillar within Sumptown's lower tiers, connected by walkable industrial walkways instead of waterways.</p>
+        <p><em>"Where the past lingers in the rust and damp air—a fragile shelter before the foster system took her away."</em></p>
+    </div>
+`;
+kikiHomeMarker.bindPopup(kikiHomeContent);
+
         // Dynamic zoom-scaling function for labels
         function updateLabelSizes() {
             const zoom = map.getZoom();
