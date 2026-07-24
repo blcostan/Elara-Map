@@ -300,7 +300,7 @@ const kikiHomeContent = `
 kikiHomeMarker.bindPopup(kikiHomeContent);
 
 // --- INTERACTIVE STORYTELLING POI 10 (The Glass Horizon) ---
-const glassHorizonMarker = L.marker([35.802851849003794, -78.62542927249596], {
+const glassHorizonMarker = L.marker([35.80253699799375, -78.62560689468366], {
     icon: L.divIcon({
         className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6]
     })
