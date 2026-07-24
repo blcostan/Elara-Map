@@ -117,8 +117,18 @@ const downtownCoords = [
     [35.786128, -78.662385],
     [35.787863, -78.668862],
     [35.788682, -78.672191],
-    [35.78950736145439, -78.67592941986129]  // Ending point of the shared southern/northern border
-    // From here, we can continue tracing the rest of Downtown's perimeter north and back toward Spire
+    [35.78950736145439, -78.67592941986129], // End of shared Green District border
+    // Head North on Dixie Trail:
+    [35.79128143315624, -78.67581007024339],
+    [35.79344752581452, -78.6757038601968],
+    [35.794222874176995, -78.67579489737957],
+    [35.79525666022489, -78.67590110742614],
+    [35.79638888665428, -78.67621973756583],
+    [35.79689346068792, -78.67637146615867],
+    [35.797865679550206, -78.67670526916216],
+    [35.7992070759173, -78.67646250334144],
+    [35.80005620503034, -78.67623491038452],
+    [35.80105299728193, -78.67614387308156]  // Stopping point for now
 ];
 
 // Render Downtown District (Amber/Gold theme for urban core)
