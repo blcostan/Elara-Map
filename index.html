@@ -252,6 +252,25 @@
         `;
         arboretumMarker.bindPopup(arboretumContent);
 
+        // --- INTERACTIVE STORYTELLING POI 5 (The Belltower) ---
+        const belltowerMarker = L.marker([35.786145509915215, -78.66350503961789], {
+            icon: L.divIcon({
+                className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6]
+            })
+        }).addTo(map);
+
+        const belltowerImageUrl = "https://lh3.googleusercontent.com/d/1fYaBMEnXuVL-cmLcAiRIXItMCjhJj3Ix";
+
+        const belltowerContent = `
+            <div class="story-popup">
+                <h3>The Belltower</h3>
+                <img src="${belltowerImageUrl}" alt="The Belltower">
+                <p><strong>Description:</strong> Standing proudly on Main Campus as an enduring monument of stone and historical memory. Surrounded by the encroaching canopy of the Green District, its classic architecture acts as a beacon of tradition amidst the shifting tides of the city.</p>
+                <p><em>"A timeless landmark keeping watch over the heart of the university grounds."</em></p>
+            </div>
+        `;
+        belltowerMarker.bindPopup(belltowerContent);
+
         // Dynamic zoom-scaling function for labels
         function updateLabelSizes() {
             const zoom = map.getZoom();
