@@ -3,8 +3,8 @@ const map = L.map('map', {
     zoomControl: false
 }).setView([35.775, -78.650], 13);
 
-// Add CartoDB Dark Matter No-Labels basemap
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+// Add CartoDB Dark Matter No-Labels basemap (Fixed URL)
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
     maxZoom: 20,
     subdomains: 'abcd',
     attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
@@ -207,7 +207,7 @@ const downtownMarker = L.marker(downtownCenter, {
     })
 }).addTo(map);
 
-// --- The Cinder Complete Boundary Coordinates & Rendering (Fully Aligned) ---
+// --- The Cinder Complete Boundary Coordinates & Rendering (Fully Aligned to Sumptown's exact northern curve) ---
 const cinderCoords = [
     // Western & Northern Border Points
     [35.769760, -78.614413],
@@ -251,8 +251,19 @@ const cinderCoords = [
     [35.785649106191656, -78.57346213836747],
     [35.78440709172871, -78.57318144558997],
     [35.7680797630841, -78.57432836499183],
-    // Southern Border (Matching Sumptown's northern curve across both west and east sections)
-    [35.77182789723571, -78.5960],
+    // Southern Border (Exact match to Sumptown's northern border curve points in reverse order)
+    [35.76790691580093, -78.5742381736827],
+    [35.76787585863594, -78.57690476429848],
+    [35.768424533432345, -78.57949480207363],
+    [35.76983243641054, -78.5820975990514],
+    [35.77112644284386, -78.58324589166106],
+    [35.77202705893353, -78.58444522009997],
+    [35.77235831744404, -78.58549144225545],
+    [35.77264614945426, -78.59082395897302],
+    [35.772515577836465, -78.59151060502968],
+    [35.771949765117476, -78.59292681123374],
+    [35.77148840715171, -78.59451467879587],
+    [35.77182789723571, -78.59616691936726],
     [35.77235018684068, -78.59799082222679],
     [35.77261133035784, -78.59906370571471],
     [35.7722718436183, -78.60065157327683],
@@ -285,19 +296,6 @@ const cinderMarker = L.marker(cinderCenter, {
         iconSize: [0, 0]
     })
 }).addTo(map);
-
-cinderPolygon.bindPopup(`<strong>SECTOR: THE CINDER</strong>`);
-
-const cinderCenter = cinderPolygon.getBounds().getCenter();
-const cinderMarker = L.marker(cinderCenter, {
-    icon: L.divIcon({
-        className: 'scifi-label-cinder', 
-        html: 'THE CINDER', 
-        iconSize: [0, 0]
-    })
-}).addTo(map);
-
-
 
 // --- POI 1 (Cloud Plaza) ---
 const cloudPlazaMarker = L.marker([35.778, -78.630], {
@@ -438,6 +436,7 @@ glassHorizonMarker.bindPopup(`
         <p><em>"The ultimate divider between the sterile corporate luxury above and the struggles of the outer sectors below."</em></p>
     </div>
 `);
+
 // --- POI 11 (Fort Mordecai) ---
 const fortMordecaiMarker = L.marker([35.7960939686416, -78.65020263393107], {
     icon: L.divIcon({ className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6] })
@@ -451,6 +450,7 @@ fortMordecaiMarker.bindPopup(`
         <p><em>"Lush, manicured greenery and high-security seclusion just a stone's throw from the vertical corporate sprawl."</em></p>
     </div>
 `);
+
 // --- POI 12 (The Rose Gardens) ---
 const roseGardensMarker = L.marker([35.7925, -78.6575], {
     icon: L.divIcon({ className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6] })
@@ -464,6 +464,7 @@ roseGardensMarker.bindPopup(`
         <p><em>"Walking past the glowing petals under the smog-filtered sky, the corporate elite enjoy a synthetic masterpiece of nature that pulses with quiet, engineered life."</em></p>
     </div>
 `);
+
 // --- POI 13 (Five Points Bar District) ---
 const fivePointsMarker = L.marker([35.804140, -78.645885], {
     icon: L.divIcon({ className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6] })
@@ -477,6 +478,7 @@ fivePointsMarker.bindPopup(`
         <p><em>"Neon signs flicker through the damp night air, casting a deceptive warmth over a district where danger lurks in the shadows of every alleyway."</em></p>
     </div>
 `);
+
 // --- POI 14 (Foundry of Origins - Main Cathedral) ---
 const foundryMainMarker = L.marker([35.80028721396566, -78.67582514547222], {
     icon: L.divIcon({ className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6] })
@@ -490,6 +492,7 @@ foundryMainMarker.bindPopup(`
         <p><em>"Within the shadowed sanctuary, a colossal statue of a Titan reaches out its massive stone hand, cradling a pulsing bio-luminescent sphere that bathes the devout in an ethereal, shifting glow."</em></p>
     </div>
 `);
+
 // --- POI 15 (Elysia Corporate Headquarters) ---
 const elysiaHqMarker = L.marker([35.77670560229435, -78.63882962888806], {
     icon: L.divIcon({ className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6] })
@@ -511,7 +514,7 @@ function updateLabelSizes() {
     if (fontSize < 8) fontSize = 8;    
     if (fontSize > 15) fontSize = 15; 
 
-    const elements = document.querySelectorAll('.scifi-label-spire, .scifi-label-green, .scifi-label-sumptown, .scifi-label-downtown');
+    const elements = document.querySelectorAll('.scifi-label-spire, .scifi-label-green, .scifi-label-sumptown, .scifi-label-downtown, .scifi-label-cinder');
     elements.forEach(el => {
         el.style.fontSize = fontSize + 'px';
         el.style.padding = '0px';
