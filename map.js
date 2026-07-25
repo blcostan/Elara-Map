@@ -325,10 +325,10 @@ const fringeCityCoords = [
 
 // Render Fringe City (Vibrant Teal / Community theme)
 const fringeCityPolygon = L.polygon(fringeCityCoords, {
-    color: "#06b6d4", 
+    color: "#fb7185", 
     weight: 3, 
     dashArray: '6, 6',
-    fillColor: "#06b6d4", 
+    fillColor: "#fb7185", 
     fillOpacity: 0.12
 }).addTo(map);
 
