@@ -519,6 +519,19 @@ gridLockPlazaMarker.bindPopup(`
         <p><em>"In the shadows beneath the concrete sky, everything comes at a price—from a clean breath of air to a handful of synthetic rations."</em></p>
     </div>
 `);
+// --- POI 18 (Elara's Childhood Room) ---
+const elaraRoomMarker = L.marker([35.79325538505903, -78.60349683068041], {
+    icon: L.divIcon({ className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6] })
+}).addTo(map);
+const elaraRoomImageUrl = "https://lh3.googleusercontent.com/d/1PTlbvNbWIWVYp8jRKPVfSKY5R6dUmOH7";
+elaraRoomMarker.bindPopup(`
+    <div class="story-popup">
+        <h3>Elara's Childhood Room</h3>
+        <img src="${elaraRoomImageUrl}" alt="Elara's Childhood Room">
+        <p><strong>Atmosphere:</strong> A cramped, soot-dusted habitation cell tucked deep inside the hulking, monolithic apartment blocks of The Cinder. Here, people live crammed into narrow vertical spaces, filtering the heavy gray-black soot through damp rags and learning to endure the constant, grinding vibrations of the massive exhaust fans overhead.</p>
+        <p><em>"Where the walls carry the gray stain of permanent grit, and every breath is a reminder of the relentless industrial sprawl pressing down from above."</em></p>
+    </div>
+`);
 
 // Dynamic zoom-scaling function for labels
 function updateLabelSizes() {
