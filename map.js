@@ -506,6 +506,19 @@ elysiaHqMarker.bindPopup(`
         <p><em>"From glass-walled executive suites high above the streets, executives manage an empire built on artificial joy and fleeting, synthetic power."</em></p>
     </div>
 `);
+// --- POI 17 (Grid-Lock Plaza) ---
+const gridLockPlazaMarker = L.marker([35.78752297957874, -78.58771925954728], {
+    icon: L.divIcon({ className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6] })
+}).addTo(map);
+const gridLockPlazaImageUrl = "https://lh3.googleusercontent.com/d/1lh_XD9fyLwMyk8Qj975iAty7pZyMHHm1";
+gridLockPlazaMarker.bindPopup(`
+    <div class="story-popup">
+        <h3>Grid-Lock Plaza</h3>
+        <img src="${gridLockPlazaImageUrl}" alt="Grid-Lock Plaza">
+        <p><strong>Atmosphere:</strong> A claustrophobic, dimly lit intersection trapped beneath a colossal, brutalist overpass of pre-collapse concrete roadways casting deep shadows. Illegal stall vendors hustle beneath flickering neon, selling pressurized air canisters, heavy-duty soot rags, and synthetic ration blocks to the passing crowds.</p>
+        <p><em>"In the shadows beneath the concrete sky, everything comes at a price—from a clean breath of air to a handful of synthetic rations."</em></p>
+    </div>
+`);
 
 // Dynamic zoom-scaling function for labels
 function updateLabelSizes() {
