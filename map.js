@@ -296,7 +296,6 @@ const cinderMarker = L.marker(cinderCenter, {
         iconSize: [0, 0]
     })
 }).addTo(map);
-
 // --- Fringe City Boundary Coordinates ---
 const fringeCityCoords = [
     [35.752037, -78.694747],
@@ -324,16 +323,16 @@ const fringeCityCoords = [
     [35.803719, -78.693631]
 ];
 
-// Render Fringe City (Placeholder theme style, e.g., Slate/Steely Blue)
+// Render Fringe City (Vibrant Teal / Community theme)
 const fringeCityPolygon = L.polygon(fringeCityCoords, {
-    color: "#64748b", 
+    color: "#06b6d4", 
     weight: 3, 
     dashArray: '6, 6',
-    fillColor: "#64748b", 
+    fillColor: "#06b6d4", 
     fillOpacity: 0.12
 }).addTo(map);
 
-fringeCityPolygon.bindPopup(`<strong>SECTOR: FRINGE CITY</strong>`);
+fringeCityPolygon.bindPopup(`<strong>SECTOR: FRINGE CITY</strong><br><em>Community hub for students, professors, and working-class families.</em>`);
 
 const fringeCityCenter = fringeCityPolygon.getBounds().getCenter();
 const fringeCityMarker = L.marker(fringeCityCenter, {
