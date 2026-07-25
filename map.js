@@ -297,6 +297,53 @@ const cinderMarker = L.marker(cinderCenter, {
     })
 }).addTo(map);
 
+// --- Fringe City Boundary Coordinates ---
+const fringeCityCoords = [
+    [35.752037, -78.694747],
+    [35.75169739800973, -78.70127013509891],
+    [35.75213274975152, -78.70661309544835],
+    [35.7527074104098, -78.70992830578047],
+    [35.753420307728284, -78.71177513632514],
+    [35.75468857508139, -78.7145214249445],
+    [35.75593219631328, -78.71711598500323],
+    [35.757139, -78.721364],
+    [35.757496, -78.725112],
+    [35.757828, -78.728223],
+    [35.758493, -78.730165],
+    [35.760303, -78.732471],
+    [35.761670, -78.733392],
+    [35.766560, -78.735648],
+    [35.768610, -78.729134],
+    [35.770572, -78.723125],
+    [35.777086, -78.709178],
+    [35.783937, -78.700030],
+    [35.788032, -78.697488],
+    [35.792250, -78.696356],
+    [35.795627, -78.695262],
+    [35.799908, -78.693996],
+    [35.803719, -78.693631]
+];
+
+// Render Fringe City (Placeholder theme style, e.g., Slate/Steely Blue)
+const fringeCityPolygon = L.polygon(fringeCityCoords, {
+    color: "#64748b", 
+    weight: 3, 
+    dashArray: '6, 6',
+    fillColor: "#64748b", 
+    fillOpacity: 0.12
+}).addTo(map);
+
+fringeCityPolygon.bindPopup(`<strong>SECTOR: FRINGE CITY</strong>`);
+
+const fringeCityCenter = fringeCityPolygon.getBounds().getCenter();
+const fringeCityMarker = L.marker(fringeCityCenter, {
+    icon: L.divIcon({
+        className: 'scifi-label-fringecity', 
+        html: 'FRINGE CITY', 
+        iconSize: [0, 0]
+    })
+}).addTo(map);
+
 // --- POI 1 (Cloud Plaza) ---
 const cloudPlazaMarker = L.marker([35.778, -78.630], {
     icon: L.divIcon({ className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6] })
