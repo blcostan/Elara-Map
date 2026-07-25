@@ -532,6 +532,19 @@ elaraRoomMarker.bindPopup(`
         <p><em>"Where the walls carry the gray stain of permanent grit, and every breath is a reminder of the relentless industrial sprawl pressing down from above."</em></p>
     </div>
 `);
+// --- POI 19 (The Smut-Sinks) ---
+const smutSinksMarker = L.marker([35.784051913490444, -78.59586851141059], {
+    icon: L.divIcon({ className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6] })
+}).addTo(map);
+const smutSinksImageUrl = "https://lh3.googleusercontent.com/d/1p22kbjAFNfnB5LrlvqdKBk859erMmg7S";
+smutSinksMarker.bindPopup(`
+    <div class="story-popup">
+        <h3>The Smut-Sinks</h3>
+        <img src="${smutSinksImageUrl}" alt="The Smut-Sinks">
+        <p><strong>Atmosphere:</strong> A stagnant, synthetic-looking body of dark industrial water coated in a thick, iridescent sheen of oily runoff and chemical sludge, reflecting a hazy palette of charcoal gray, dull violet, and sickly amber.</p>
+        <p><em>"Surrounded by shores choked with discarded synthetic debris and gray silt, a sulfurous mist hangs low over the oily ripples while the constant drift of fine gray-black soot dimples the dark water."</em></p>
+    </div>
+`);
 
 // Dynamic zoom-scaling function for labels
 function updateLabelSizes() {
