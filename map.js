@@ -207,8 +207,9 @@ const downtownMarker = L.marker(downtownCenter, {
     })
 }).addTo(map);
 
-// --- The Cinder Boundary Coordinates (Segment 1 & 2) ---
+// --- The Cinder Complete Boundary Coordinates & Rendering ---
 const cinderCoords = [
+    // Segment 1 & 2
     [35.769760, -78.614413], // Connects to Spire District
     [35.771741888040616, -78.61443535378109],
     [35.773108325402845, -78.61382293099518],
@@ -239,13 +240,27 @@ const cinderCoords = [
     [35.80724802664277, -78.6043736387899],
     [35.807806776894004, -78.60378673362005],
     [35.809596820672915, -78.60237050592761],
-    [35.81002104478729, -78.60165601267735]
+    [35.81002104478729, -78.60165601267735],
+    // Segment 3
+    [35.81012546884592, -78.60158075389512],
+    [35.80289657931754, -78.59411066750982],
+    [35.80099413110796, -78.59192738230607],
+    [35.795754845852684, -78.58447534265073],
+    [35.791183281888884, -78.57798043991784],
+    [35.78813726583865, -78.57454721241582],
+    [35.786725503027895, -78.57374283114497],
+    [35.785649106191656, -78.57346213836747],
+    [35.78440709172871, -78.57318144558997],
+    [35.7680797630841, -78.57432836499183] // Shares southern border with Sumptown's northern border
 ];
 
 // Render The Cinder (Fiery Orange/Red theme for industrial grit)
 const cinderPolygon = L.polygon(cinderCoords, {
-    color: "#f97316", weight: 3, dashArray: '6, 6',
-    fillColor: "#f97316", fillOpacity: 0.12
+    color: "#f97316", 
+    weight: 3, 
+    dashArray: '6, 6',
+    fillColor: "#f97316", 
+    fillOpacity: 0.12
 }).addTo(map);
 
 cinderPolygon.bindPopup(`<strong>SECTOR: THE CINDER</strong>`);
@@ -253,9 +268,13 @@ cinderPolygon.bindPopup(`<strong>SECTOR: THE CINDER</strong>`);
 const cinderCenter = cinderPolygon.getBounds().getCenter();
 const cinderMarker = L.marker(cinderCenter, {
     icon: L.divIcon({
-        className: 'scifi-label-cinder', html: 'THE CINDER', iconSize: [0, 0]
+        className: 'scifi-label-cinder', 
+        html: 'THE CINDER', 
+        iconSize: [0, 0]
     })
 }).addTo(map);
+
+
 
 // --- POI 1 (Cloud Plaza) ---
 const cloudPlazaMarker = L.marker([35.778, -78.630], {
