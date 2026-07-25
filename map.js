@@ -207,9 +207,9 @@ const downtownMarker = L.marker(downtownCenter, {
     })
 }).addTo(map);
 
-// --- The Cinder Complete Boundary Coordinates & Rendering (Aligned with Sumptown) ---
+// --- The Cinder Complete Boundary Coordinates & Rendering (Fully Aligned) ---
 const cinderCoords = [
-    // Western & Northern Border Points (unchanged)
+    // Western & Northern Border Points
     [35.769760, -78.614413],
     [35.771741888040616, -78.61443535378109],
     [35.773108325402845, -78.61382293099518],
@@ -251,7 +251,7 @@ const cinderCoords = [
     [35.785649106191656, -78.57346213836747],
     [35.78440709172871, -78.57318144558997],
     [35.7680797630841, -78.57432836499183],
-    // Southern Border (Matching Sumptown's northern curve points in reverse order)
+    // Southern Border (Matching Sumptown's northern curve across both west and east sections)
     [35.77182789723571, -78.5960],
     [35.77235018684068, -78.59799082222679],
     [35.77261133035784, -78.59906370571471],
