@@ -286,6 +286,17 @@ const cinderMarker = L.marker(cinderCenter, {
     })
 }).addTo(map);
 
+cinderPolygon.bindPopup(`<strong>SECTOR: THE CINDER</strong>`);
+
+const cinderCenter = cinderPolygon.getBounds().getCenter();
+const cinderMarker = L.marker(cinderCenter, {
+    icon: L.divIcon({
+        className: 'scifi-label-cinder', 
+        html: 'THE CINDER', 
+        iconSize: [0, 0]
+    })
+}).addTo(map);
+
 
 
 // --- POI 1 (Cloud Plaza) ---
