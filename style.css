@@ -80,6 +80,23 @@
             justify-content: center;
             transform: translate(-50%, -50%);
         }
+/* Sci-Fi Label for The Cinder (Fiery Orange/Red) */
+        .scifi-label-cinder {
+            background: transparent;
+            border: none;
+            color: #f97316;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(249, 115, 22, 0.8), 0 0 20px rgba(249, 115, 22, 0.4);
+            text-transform: uppercase;
+            text-align: center;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transform: translate(-50%, -50%);
+        }
         /* Custom Interactive POI Marker Styling (Violet/magenta glow) */
         .poi-pulse-marker {
             background: #d946ef;
