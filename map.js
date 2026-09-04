@@ -3,8 +3,8 @@ const map = L.map('map', {
     zoomControl: false
 }).setView([35.775, -78.650], 13);
 
-// Add CartoDB Dark Matter No-Labels basemap with correct URL for hidden labels/roads
-L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
+// Add CartoDB Dark Matter No-Labels basemap with your API key
+L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png?key=cb1_2x9a_1_fc900842a2682007b45fd6a1', {
     maxZoom: 20,
     subdomains: 'abcd',
     attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
