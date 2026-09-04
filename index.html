@@ -78,6 +78,40 @@
             justify-content: center;
             transform: translate(-50%, -50%);
         }
+        /* Sci-Fi Label for Downtown */
+        .scifi-label-downtown {
+            background: transparent;
+            border: none;
+            color: #f97316;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(249, 115, 22, 0.8), 0 0 20px rgba(249, 115, 22, 0.4);
+            text-transform: uppercase;
+            text-align: center;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transform: translate(-50%, -50%);
+        }
+        /* Sci-Fi Label for The Cinder */
+        .scifi-label-cinder {
+            background: transparent;
+            border: none;
+            color: #fb7185;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-shadow: 0 0 10px rgba(251, 113, 133, 0.8), 0 0 20px rgba(251, 113, 133, 0.4);
+            text-transform: uppercase;
+            text-align: center;
+            white-space: nowrap;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transform: translate(-50%, -50%);
+        }
         /* Custom Interactive POI Marker Styling (Violet/magenta glow) */
         .poi-pulse-marker {
             background: #d946ef;
@@ -193,13 +227,10 @@
             })
         }).addTo(map);
 
-        // 3. Sumptown Boundary Coordinates (with curved southeastern transition filled in)
+        // 3. Sumptown Boundary Coordinates
         const sumptownCoords = [
-            // Start at bottom of Spire's eastern border
             [35.75780993474421, -78.61280301624038],
-            // Go UP north hugging Spire's eastern border to MLK Jr Blvd
             [35.76981382377968, -78.61443431358302],
-            // Turn right/east along MLK Blvd
             [35.77076589778483, -78.61172373176922],
             [35.7710096366165, -78.61075813663008],
             [35.771061866268965, -78.60818321625906],
@@ -209,7 +240,6 @@
             [35.772054223151194, -78.6011880150208],
             [35.7722718436183, -78.60065157327683],
             [35.77261133035784, -78.59906370571471],
-            // Turn right onto Poole Rd
             [35.77235018684068, -78.59799082222679],
             [35.77182789723571, -78.59616691936726],
             [35.77148840715171, -78.59451467879587],
@@ -223,7 +253,6 @@
             [35.768424533432345, -78.57949480207363],
             [35.76787585863594, -78.57690476429848],
             [35.76790691580093, -78.5742381736827],
-            // Head South on 440 with smooth intermediate curve points
             [35.7679089212448, -78.57417198368348],
             [35.761888550283054, -78.5747030339163],
             [35.75830925788647, -78.57659671392976],
@@ -231,7 +260,6 @@
             [35.754748226341334, -78.58089900873085],
             [35.75386013546752, -78.58333445474182],
             [35.75339873349045, -78.58878467035257],
-            // Head West on 440 to I-40
             [35.75334711169578, -78.59122349178183],
             [35.754506782725905, -78.59818980028047],
             [35.757547368962925, -78.60660214172542],
@@ -251,6 +279,50 @@
         const sumptownMarker = L.marker(sumptownCenter, {
             icon: L.divIcon({
                 className: 'scifi-label-sumptown', html: 'SUMPTOWN', iconSize: [0, 0]
+            })
+        }).addTo(map);
+
+        // 4. Downtown District Boundary Coordinates
+        const downtownCoords = [
+            [35.792988, -78.624918], [35.792937, -78.612899], [35.769760, -78.614413],
+            [35.770438, -78.648150], [35.774372, -78.655836], [35.777774, -78.650595],
+            [35.778192, -78.650526], [35.788695, -78.651009], [35.788580, -78.643067],
+            [35.792988, -78.624918]
+        ];
+
+        const downtownPolygon = L.polygon(downtownCoords, {
+            color: "#f97316", weight: 3, dashArray: '6, 6',
+            fillColor: "#f97316", fillOpacity: 0.12
+        }).addTo(map);
+
+        downtownPolygon.bindPopup(`<strong>SECTOR: DOWNTOWN</strong>`);
+
+        const downtownCenter = downtownPolygon.getBounds().getCenter();
+        const downtownMarker = L.marker(downtownCenter, {
+            icon: L.divIcon({
+                className: 'scifi-label-downtown', html: 'DOWNTOWN', iconSize: [0, 0]
+            })
+        }).addTo(map);
+
+        // 5. The Cinder District Boundary Coordinates
+        const cinderCoords = [
+            [35.804623, -78.623870], [35.804518, -78.623968], [35.788580, -78.643067],
+            [35.788695, -78.651009], [35.778192, -78.650526], [35.777774, -78.650595],
+            [35.774372, -78.655836], [35.770438, -78.648150], [35.754625, -78.642027],
+            [35.757857, -78.612825], [35.753120, -78.623897], [35.804623, -78.623870]
+        ];
+
+        const cinderPolygon = L.polygon(cinderCoords, {
+            color: "#fb7185", weight: 3, dashArray: '6, 6',
+            fillColor: "#fb7185", fillOpacity: 0.12
+        }).addTo(map);
+
+        cinderPolygon.bindPopup(`<strong>SECTOR: THE CINDER</strong>`);
+
+        const cinderCenter = cinderPolygon.getBounds().getCenter();
+        const cinderMarker = L.marker(cinderCenter, {
+            icon: L.divIcon({
+                className: 'scifi-label-cinder', html: 'THE CINDER', iconSize: [0, 0]
             })
         }).addTo(map);
 
@@ -368,7 +440,7 @@
         `;
         jaxLabMarker.bindPopup(jaxLabContent);
 
-	// --- INTERACTIVE STORYTELLING POI 7 (Cypress-Mire Market) ---
+        // --- INTERACTIVE STORYTELLING POI 7 (Cypress-Mire Market) ---
         const cypressMireMarker = L.marker([35.758527336270575, -78.59404209450196], {
             icon: L.divIcon({
                 className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6]
@@ -386,44 +458,44 @@
             </div>
         `;
         cypressMireMarker.bindPopup(cypressMireContent);
-	
-	// --- INTERACTIVE STORYTELLING POI 8 (The Sump-Lock) ---
-const sumpLockMarker = L.marker([35.75652862710869, -78.57890195312048], {
-    icon: L.divIcon({
-        className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6]
-    })
-}).addTo(map);
 
-const sumpLockImageUrl = "https://lh3.googleusercontent.com/d/1FQ5Fo_TfCO060ZjmqExgnf2-RM9l1pKk";
+        // --- INTERACTIVE STORYTELLING POI 8 (The Sump-Lock) ---
+        const sumpLockMarker = L.marker([35.75652862710869, -78.57890195312048], {
+            icon: L.divIcon({
+                className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6]
+            })
+        }).addTo(map);
 
-const sumpLockContent = `
-    <div class="story-popup">
-        <h3>The Sump-Lock (Gate 7)</h3>
-        <img src="${sumpLockImageUrl}" alt="The Sump-Lock Control Gate">
-        <p><strong>Atmosphere:</strong> A colossal, brutalist-industrial sluice gate controlling the final catchment basin. Cold, violet-tinted mist rises from oily water, illuminated by the warm, chaotic glow of the "Sump-Lock Pub," a shanty tavern bolted to the side of the main structure.</p>
-        <p><em>"The bottleneck of the Raleigh Sector. Traders gather here, beneath the towering, rust-streaked concrete pillars, to watch the water gauges and swap stories in the shadow of the pre-collapse machinery."</em></p>
-    </div>
-`;
-sumpLockMarker.bindPopup(sumpLockContent);
+        const sumpLockImageUrl = "https://lh3.googleusercontent.com/d/1FQ5Fo_TfCO060ZjmqExgnf2-RM9l1pKk";
 
-// --- INTERACTIVE STORYTELLING POI 9 (KiKi's Childhood Home) ---
-const kikiHomeMarker = L.marker([35.76526751892501, -78.59848199754718], {
-    icon: L.divIcon({
-        className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6]
-    })
-}).addTo(map);
+        const sumpLockContent = `
+            <div class="story-popup">
+                <h3>The Sump-Lock (Gate 7)</h3>
+                <img src="${sumpLockImageUrl}" alt="The Sump-Lock Control Gate">
+                <p><strong>Atmosphere:</strong> A colossal, brutalist-industrial sluice gate controlling the final catchment basin. Cold, violet-tinted mist rises from oily water, illuminated by the warm, chaotic glow of the "Sump-Lock Pub," a shanty tavern bolted to the side of the main structure.</p>
+                <p><em>"The bottleneck of the Raleigh Sector. Traders gather here, beneath the towering, rust-streaked concrete pillars, to watch the water gauges and swap stories in the shadow of the pre-collapse machinery."</em></p>
+            </div>
+        `;
+        sumpLockMarker.bindPopup(sumpLockContent);
 
-const kikiHomeImageUrl = "https://lh3.googleusercontent.com/d/1fXo2qZ-jBoyB-DklFHsZt2Sx8CNlAp52";
+        // --- INTERACTIVE STORYTELLING POI 9 (KiKi's Childhood Home) ---
+        const kikiHomeMarker = L.marker([35.76526751892501, -78.59848199754718], {
+            icon: L.divIcon({
+                className: 'poi-pulse-marker', iconSize: [12, 12], iconAnchor: [6, 6]
+            })
+        }).addTo(map);
 
-const kikiHomeContent = `
-    <div class="story-popup">
-        <h3>KiKi's Childhood Shanty</h3>
-        <img src="${kikiHomeImageUrl}" alt="KiKi's Childhood Home">
-        <p><strong>Atmosphere:</strong> A cramped, weather-beaten dwelling retrofitted into a rusted shipping container, wedged against a massive concrete drainage pillar within Sumptown's lower tiers, connected by walkable industrial walkways instead of waterways.</p>
-        <p><em>"Where the past lingers in the rust and damp air—a fragile shelter before the foster system took her away."</em></p>
-    </div>
-`;
-kikiHomeMarker.bindPopup(kikiHomeContent);
+        const kikiHomeImageUrl = "https://lh3.googleusercontent.com/d/1fXo2qZ-jBoyB-DklFHsZt2Sx8CNlAp52";
+
+        const kikiHomeContent = `
+            <div class="story-popup">
+                <h3>KiKi's Childhood Shanty</h3>
+                <img src="${kikiHomeImageUrl}" alt="KiKi's Childhood Home">
+                <p><strong>Atmosphere:</strong> A cramped, weather-beaten dwelling retrofitted into a rusted shipping container, wedged against a massive concrete drainage pillar within Sumptown's lower tiers, connected by walkable industrial walkways instead of waterways.</p>
+                <p><em>"Where the past lingers in the rust and damp air—a fragile shelter before the foster system took her away."</em></p>
+            </div>
+        `;
+        kikiHomeMarker.bindPopup(kikiHomeContent);
 
         // Dynamic zoom-scaling function for labels
         function updateLabelSizes() {
@@ -432,7 +504,7 @@ kikiHomeMarker.bindPopup(kikiHomeContent);
             if (fontSize < 8) fontSize = 8;   
             if (fontSize > 15) fontSize = 15; 
 
-            const elements = document.querySelectorAll('.scifi-label-spire, .scifi-label-green, .scifi-label-sumptown');
+            const elements = document.querySelectorAll('.scifi-label-spire, .scifi-label-green, .scifi-label-sumptown, .scifi-label-downtown, .scifi-label-cinder');
             elements.forEach(el => {
                 el.style.fontSize = fontSize + 'px';
                 el.style.padding = '0px';
