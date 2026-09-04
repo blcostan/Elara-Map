@@ -130,12 +130,12 @@
             zoomControl: false
         }).setView([35.775, -78.650], 13);
 
-        // Add CartoDB Dark Matter No-Labels basemap
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png', {
-            maxZoom: 20,
-            subdomains: 'abcd',
-            attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
-        }).addTo(map);
+     // Add free public Dark Matter basemap (no API key required)
+L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_nolabels/{z}/{x}/{y}{r}.png', {
+    maxZoom: 20,
+    subdomains: 'abcd',
+    attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
+}).addTo(map);
 
         // 1. Spire District Boundary Coordinates
         const spireCoords = [
