@@ -23,9 +23,9 @@
             margin: 0;
             padding: 0;
         }
-        /* Inverts and darkens standard map tiles for a sci-fi dark mode */
+        /* Dark Matter tiles with high-contrast white roads */
         .leaflet-tile-pane {
-            filter: brightness(0.6) invert(1) contrast(3) hue-rotate(200deg) saturate(0.3);
+            filter: brightness(180%) contrast(150%);
         }
         /* Sci-Fi Label for Spire District (Cyan) */
         .scifi-label-spire {
@@ -130,10 +130,11 @@
             zoomControl: false
         }).setView([35.775, -78.650], 13);
 
-        // Add free public OpenStreetMap tiles with zero restrictions
-        L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        // Add CartoDB Dark Matter No-Labels basemap with your API key
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png?key=cb1_2x9a_1_fc900842a2682007b45fd6a1', {
             maxZoom: 20,
-            attribution: '&copy; OpenStreetMap contributors'
+            subdomains: 'abcd',
+            attribution: '&copy; OpenStreetMap contributors &copy; CARTO'
         }).addTo(map);
 
         // 1. Spire District Boundary Coordinates
